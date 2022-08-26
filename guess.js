@@ -1,40 +1,29 @@
-// 2. This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
+//비동기방식으로 아이프레임 플레이어 API 코드를 불러옵니다. 
+var tag = document.createElement('script'); 
+tag.src = "https://www.youtube.com/player_api"; 
+var firstScriptTag = document.getElementsByTagName('script')[0]; 
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag); 
 
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-var player;
-function onYouTubeIframeAPIReady() {
+// api 코드 다운로드 후 제어관련 함수 생성. 
+var player; 
+function onYouTubePlayerAPIReady() { 
   player = new YT.Player('player', {
-    height: '360',
-    width: '640',
-    videoId: 'M7lc1UVf-VE',
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-    }
-  });
-}
-
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
+    height: '315',
+    width: '560', 
+    videoId: '04tYkKUPPv4',
+    playerVars: {
+      'playsinline': 1
+    }, 
+    events: { 
+      'onReady': onPlayerReady, 
+    } 
+  }); 
+}; 
+// api 음소거 함수호출 
+function onPlayerReady (event) {
   event.target.playVideo();
+  //event.target.mute();
+  //event.target.unmute();
 }
 
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-var done = false;
-function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    done = true;
-  }
-}
-function stopVideo() {
-  player.stopVideo();
-}
+//<iframe width="560" height="315" src="https://www.youtube.com/embed/04tYkKUPPv4?controls=0" title="YouTube video player"></iframe>
