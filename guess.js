@@ -35,7 +35,11 @@ function unMute() {
 
 function playVideo() {
   player.playVideo();
-  //setTimeout(stopVideo(), 3000);
+  //after3();
+}
+
+function after3() {
+  setTimeout(pauseVideo(), 3000);
 }
 
 /*
@@ -49,6 +53,10 @@ function onPlayerStateChange(event) {
 */
 function stopVideo() {
   player.stopVideo();
+}
+
+function pauseVideo() {
+  player.pauseVideo();
 }
 
 
