@@ -34,6 +34,7 @@ function unMute() {
 }
 
 function playVideo() {
+  //setTimeout(playVideo(), 3000);
   player.playVideo();
   //after3();
 }
