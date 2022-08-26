@@ -11,19 +11,46 @@ function onYouTubePlayerAPIReady() {
     height: '315',
     width: '560', 
     videoId: '04tYkKUPPv4',
+    //autoplay: 1,
     playerVars: {
       'playsinline': 1
     }, 
     events: { 
       'onReady': onPlayerReady, 
+      //'onStateChange': onPlayerStateChange
     } 
   }); 
 }; 
-// api 음소거 함수호출 
+//  
 function onPlayerReady (event) {
   event.target.playVideo();
   //event.target.mute();
+  //player.playVideo();
   //event.target.unmute();
 }
+
+function unMute() {
+  player.unMute();
+}
+
+function playVideo() {
+  player.playVideo();
+  //setTimeout(stopVideo(), 3000);
+}
+
+/*
+var done = false;
+function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.PLAYING && !done) {
+    
+    done = true;
+  }
+}
+*/
+function stopVideo() {
+  player.stopVideo();
+}
+
+
 
 //<iframe width="560" height="315" src="https://www.youtube.com/embed/04tYkKUPPv4?controls=0" title="YouTube video player"></iframe>
