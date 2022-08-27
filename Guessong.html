@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Guessing the SONG!</title>
+        <title>GueSsing the SonG!</title>
         <style>
             body {
                 font-family: Arial;
@@ -14,15 +14,24 @@
     </head>
     
     <body align="center">
-        <h1>-Guessing the sonG-</h1>
+        <h1>-GueSsing the SonG-</h1>
         <form>
-            <input type="button" class="button" value="play" onclick="playVideo();">
+            <input type="button" class="button" value="Play" onclick="playVideo();">
+            <input type="button" class="button" value="정답보기" onclick="showAnswer();" id="answerBtn">
             <!--<input type="button" class="button" value="pause" onclick="pauseVideo();">-->
         </form>
-        <div id="player" hidden="True">
+        
+        <div id="answerZone">
+            <span id="Title">TITLE</span>
+            <br>
+            <span id="Artist">ARTIST</span>
+            <br>
+            <input type="button" class="button" value="Next" onclick="next();">
+            <br>
+            <div id="player">
             
+            </div>
         </div>
-        <span id="Title">TITLE</span>
 
         <script type="text/javascript" src="guess.js"></script> 
     </body>
