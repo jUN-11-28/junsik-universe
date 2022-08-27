@@ -121,10 +121,10 @@ function playVideos() {
   player.playVideo();
   setTimeout(function() {
     stopVideo();
-  } , 3000);
+  } , 5000);
   setTimeout(function() {
     targetAnswerBtn.style.visibility = "visible";
-  } , 3000);
+  } , 5000);
 }
 
 var done = false;
