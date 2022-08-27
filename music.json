@@ -1,16 +1,10 @@
 {
     "music" : [
         {
-            "Title" : "라일락",
+            "Title" : "Mother Nature (H₂O)",
             "Artist" : "아이유",
-            "Year" : 2021,
-            "id" : "04tYkKUPPv4"
-        },
-        {
-            "Title" : "strawberry moon",
-            "Artist" : "아이유",
-            "Year" : 2021,
-            "id" : "Kevp2lFKSOg"
+            "Year" : 2022,
+            "id" : "xQNp354ptzg"
         },
         {
             "Title" : "드라마",
@@ -19,11 +13,94 @@
             "id" : "AkugjXUj5sM"
         },
         {
+            "Title" : "정거장",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "bJYW68ogcaA"
+        },
+        {
+            "Title" : "겨울잠",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "FXfvbMEWkhk"
+        },
+        {
+            "Title" : "너",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "HP4kVAiQLEw"
+        },
+        {
+            "Title" : "러브레터",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "4x7BrWTUmZo"
+        },
+        {
+            "Title" : "strawberry moon",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "Kevp2lFKSOg"
+        },
+        {
+            "Title" : "라일락",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "04tYkKUPPv4"
+        },
+        {
+            "Title" : "Flu",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "E787kCVAeL8"
+        },
+        {
+            "Title" : "Coin",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "dk22oBpplKA"
+        },
+        {
+            "Title" : "봄 안녕 봄",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "PLDH-rcYd8c"
+        },
+        {
             "Title" : "Celebrity",
             "Artist" : "아이유",
             "Year" : 2021,
             "id" : "es6bbfAjk3I"
+        },
+        {
+            "Title" : "돌림노래(feat. DEAN)",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "hiUPJaHjuUk"
+        },
+        {
+            "Title" : "빈 컵 (Empty Cup)",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "2sQznc9CQxg"
+        },
+        {
+            "Title" : "아이아 나의 바다",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "TqIAndOnd74"
+        },
+        {
+            "Title" : "어푸 (Ah puh)",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "7n9D8ZeOQv0"
+        },
+        {
+            "Title" : "에필로그",
+            "Artist" : "아이유",
+            "Year" : 2021,
+            "id" : "uAyZZLL3faY"
         }
-        
     ]
 }
