@@ -110,7 +110,7 @@ function playVideo() {
   setTimeout(function() {
     targetAnswerBtn.style.visibility = "visible";
   } , 3000);
-  count++;
+  count = 1;
 }
 
 function playVideos() {
