@@ -1,75 +1,79 @@
-// 제목관련
+// target 위치들
 var targetTitle = document.getElementById("Title");
 var targetArtist = document.getElementById("Artist");
-
-// answerZone
 var targetAnswer = document.getElementById("answerZone");
 var targetAnswerBtn = document.getElementById("answerBtn");
+var targetPlayBtn = document.getElementById("playBtn");
+var targetVideo = document.getElementById("videoZone");
 targetAnswer.style.visibility = "hidden";
 targetAnswerBtn.style.visibility = "hidden";
 
+//비동기방식으로 아이프레임 플레이어 API 코드를 불러옵니다. 
+var tag = document.createElement('script'); 
+tag.src = "https://www.youtube.com/player_api"; 
+var firstScriptTag = document.getElementsByTagName('script')[0]; 
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// json music fetch할려고 하는데 어케 하지,,,
-
-var id;
-var title;
+// 노래관련 변수들
+var id = "gE9vcSbENwo";
+var title = "junsik forever";
 function getMusicInfo() {
-  let random = Math.floor( ( Math.random() * (16 - 0) + 0 ) );
-    fetch("http://junsik-universe.com/music.json")
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (json) {
-        console.log(json);
-        id = json.music[random].id;
-        title = json.music[random].Title;
-        artist = json.music[random].Artist;
-        targetTitle.innerText = title;
-        targetArtist.innerText = artist;
-        changeVideo(id);
-      });
-      
-      
-}
+  let random = Math.floor((Math.random() * (16 - 0) + 0));
 
+  fetch("http://junsik-universe.com/music.json")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (json) {
+    console.log(json);
+    id = json.music[random].id;
+    title = json.music[random].Title;
+    artist = json.music[random].Artist;
+    targetTitle.innerText = title;
+    targetArtist.innerText = artist;
+    changeVideo(id);
+  }); 
+}
 
 function showAnswer() {
   document.getElementById("Title").innerText = title;
   document.getElementById("Artist").innerText = artist;
   targetAnswer.style.visibility = "visible";
   targetAnswerBtn.style.visibility = "hidden";
+  targetPlayBtn.style.visibility = "hidden";
   count = 0;
 }
 
 var count = 0;
 var connect = 0; //첫번째 접속인지 확인
 function playMusic() {
-  
-   
-  if (count == 0) {
-    getMusicInfo();
-    //비동기방식으로 아이프레임 플레이어 API 코드를 불러옵니다. 
-    var tag = document.createElement('script'); 
-    tag.src = "https://www.youtube.com/player_api"; 
-    var firstScriptTag = document.getElementsByTagName('script')[0]; 
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    playVideo();
+  if (connect == 0) {
+    playIntro();
   } else {
-    playVideos();
+    targetVideo.style.visibility = "hidden";
+      if (count == 0) {
+        getMusicInfo();
+        
+        playVideo();
+      } else {
+        playVideos();
+      }
   }
   connect = 1;
-  //alert(count);
+}
+
+function playIntro() {
+  player.playVideo();
 }
 
 function changeVideo(videoId) {
-    player.loadVideoById(videoId);
+  player.loadVideoById(videoId);
 }
 
 function next() {
   count = 0;
-  //alert(count);
   targetAnswer.style.visibility = "hidden";
-  
+  targetPlayBtn.style.visibility = "visible";
 }
 
 // api 코드 다운로드 후 제어관련 함수 생성. 
@@ -89,7 +93,7 @@ function onYouTubePlayerAPIReady() {
     } 
   }); 
 }; 
-//  
+
 function onPlayerReady (event) {
   event.target.playVideo();
   //event.target.mute();
@@ -120,15 +124,11 @@ function playVideos() {
   } , 3000);
 }
 
-/*
 var done = false;
 function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    
-    done = true;
-  }
+  
 }
-*/
+
 function stopVideo() {
   player.stopVideo();
 }

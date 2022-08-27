@@ -15,10 +15,10 @@
     </head>
     
     <body align="center">
-        <span>update 27Aug22 23:59</span>
+        <span>update 28Aug22 01:43</span>
         <h1>-GueSsing the SonG-</h1>
         <form>
-            <input type="button" class="button" value="Play" onclick="playMusic();">
+            <input type="button" class="button" value="Play" onclick="playMusic();" id="playBtn">
             <input type="button" class="button" value="정답보기" onclick="showAnswer();" id="answerBtn">
             <!--<input type="button" class="button" value="pause" onclick="pauseVideo();">-->
         </form>
@@ -30,10 +30,13 @@
             <br>
             <input type="button" class="button" value="Next" onclick="next();">
             <br>
+        </div>
+        <div id="videoZone">
             <div id="player">
             
             </div>
         </div>
+       
         
         <script type="text/javascript" src="guess.js"></script> 
     </body>
