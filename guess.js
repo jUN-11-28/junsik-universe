@@ -12,12 +12,28 @@ function next() {
 }
 
 function showAnswer() {
+  //document.getElementById("Title").innerText = title;
   targetAnswer.style.visibility = "visible";
   targetAnswerBtn.style.visibility = "hidden";
 
 }
 
 // json music fetch할려고 하는데 어케 하지,,,
+/*
+var id;
+var title;
+function getMusicInfo() {
+    fetch("./music.js")
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (json) {
+        //console.log(json);
+        id = json.music[0].id;
+        title = json.music[0].Title;
+      });
+}
+*/
 
 
 //비동기방식으로 아이프레임 플레이어 API 코드를 불러옵니다. 
@@ -32,7 +48,7 @@ function onYouTubePlayerAPIReady() {
   player = new YT.Player('player', {
     height: '315',
     width: '560', 
-    videoId: 'I0_ZXHzKysc',
+    videoId: "04tYkKUPPv4",
     //autoplay: 1,
     playerVars: {
       'playsinline': 1
