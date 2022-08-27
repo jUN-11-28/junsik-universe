@@ -3,6 +3,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>GueSsing the SonG!</title>
+        <script type="text/javascript" src="music.json"></script>
         <style>
             body {
                 font-family: Arial;
@@ -16,7 +17,7 @@
     <body align="center">
         <h1>-GueSsing the SonG-</h1>
         <form>
-            <input type="button" class="button" value="Play" onclick="playVideo();">
+            <input type="button" class="button" value="Play" onclick="playMusic();">
             <input type="button" class="button" value="정답보기" onclick="showAnswer();" id="answerBtn">
             <!--<input type="button" class="button" value="pause" onclick="pauseVideo();">-->
         </form>
@@ -28,11 +29,11 @@
             <br>
             <input type="button" class="button" value="Next" onclick="next();">
             <br>
-            <div id="player">
+            <div id="player" hidden="true">
             
             </div>
         </div>
-
+        
         <script type="text/javascript" src="guess.js"></script> 
     </body>
 </html>
