@@ -32,7 +32,6 @@ function getMusicInfo() {
     artist = json.music[random].Artist;
     targetTitle.innerText = title;
     targetArtist.innerText = artist;
-    changeVideo(id);
     targetAlbumArt.src = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
   }); 
 }
@@ -55,6 +54,7 @@ function playMusic() {
     targetVideo.style.visibility = "hidden";
       if (count == 0) {
         getMusicInfo();
+        changeVideo(id);
         
         playVideo();
       } else {
@@ -64,6 +64,7 @@ function playMusic() {
     targetVideo.style.visibility = "hidden";
     if (count == 0) {
       playVideo();
+      changeVideo(id);
     } else {
       playVideos();
     }
@@ -90,8 +91,8 @@ function next() {
 var player; 
 function onYouTubePlayerAPIReady() { 
   player = new YT.Player('player', {
-    height: '315',
-    width: '560', 
+    //height: '315',
+    width: '100%', 
     videoId: id,
     //autoplay: 1,
     playerVars: {
