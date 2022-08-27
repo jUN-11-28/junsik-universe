@@ -5,6 +5,7 @@ var targetAnswer = document.getElementById("answerZone");
 var targetAnswerBtn = document.getElementById("answerBtn");
 var targetPlayBtn = document.getElementById("playBtn");
 var targetVideo = document.getElementById("videoZone");
+var targetAlbumArt = document.getElementById("albumArt");
 targetAnswer.style.visibility = "hidden";
 targetAnswerBtn.style.visibility = "hidden";
 
@@ -38,6 +39,7 @@ function getMusicInfo() {
 function showAnswer() {
   document.getElementById("Title").innerText = title;
   document.getElementById("Artist").innerText = artist;
+  targetAlbumArt.src = "https://i.ytimg.com/vi/"+ id +"/maxresdefault.jpg"
   targetAnswer.style.visibility = "visible";
   targetAnswerBtn.style.visibility = "hidden";
   targetPlayBtn.style.visibility = "hidden";
