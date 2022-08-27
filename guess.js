@@ -18,7 +18,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var id = "gE9vcSbENwo";
 var title = "junsik forever";
 function getMusicInfo() {
-  let random = Math.floor((Math.random() * (16 - 0) + 0));
+  let random = Math.floor((Math.random() * (50 - 0) + 0));
 
   fetch("http://junsik-universe.com/music.json")
   .then(function (response) {
