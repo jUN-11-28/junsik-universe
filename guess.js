@@ -14,7 +14,7 @@ targetAnswerBtn.style.visibility = "hidden";
 var id;
 var title;
 function getMusicInfo() {
-  let random = Math.floor( ( Math.random() * (3 - 0) + 0 ) );
+  let random = Math.floor( ( Math.random() * (16 - 0) + 0 ) );
     fetch("http://junsik-universe.com/music.json")
       .then(function (response) {
         return response.json();
