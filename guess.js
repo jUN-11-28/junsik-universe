@@ -33,13 +33,13 @@ function getMusicInfo() {
     targetTitle.innerText = title;
     targetArtist.innerText = artist;
     changeVideo(id);
+    targetAlbumArt.src = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
   }); 
 }
 
 function showAnswer() {
   document.getElementById("Title").innerText = title;
   document.getElementById("Artist").innerText = artist;
-  targetAlbumArt.src = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
   targetAnswer.style.visibility = "visible";
   targetAnswerBtn.style.visibility = "hidden";
   targetPlayBtn.style.visibility = "hidden";
@@ -51,7 +51,7 @@ var connect = 0; //첫번째 접속인지 확인
 function playMusic() {
   if (connect == 0) {
     playIntro();
-  } else {
+  } else if (connect == 1) {
     targetVideo.style.visibility = "hidden";
       if (count == 0) {
         getMusicInfo();
@@ -60,8 +60,15 @@ function playMusic() {
       } else {
         playVideos();
       }
+  } else {
+    targetVideo.style.visibility = "hidden";
+    if (count == 0) {
+      playVideo();
+    } else {
+      playVideos();
+    }
   }
-  connect = 1;
+  connect++;
 }
 
 function playIntro() {
@@ -74,6 +81,7 @@ function changeVideo(videoId) {
 
 function next() {
   count = 0;
+  getMusicInfo();
   targetAnswer.style.visibility = "hidden";
   targetPlayBtn.style.visibility = "visible";
 }
