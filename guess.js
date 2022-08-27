@@ -8,9 +8,7 @@ var targetAnswerBtn = document.getElementById("answerBtn");
 targetAnswer.style.visibility = "hidden";
 targetAnswerBtn.style.visibility = "hidden";
 
-function next() {
-  targetAnswer.style.visibility = "hidden";
-}
+
 // json music fetch할려고 하는데 어케 하지,,,
 
 var id;
@@ -28,7 +26,9 @@ function getMusicInfo() {
         artist = json.music[random].Artist;
         targetTitle.innerText = title;
         targetArtist.innerText = artist;
+        changeVideo(id);
       });
+      
       
 }
 
@@ -42,7 +42,9 @@ function showAnswer() {
 }
 
 var count = 0;
+var connect = 0; //첫번째 접속인지 확인
 function playMusic() {
+  
    
   if (count == 0) {
     getMusicInfo();
@@ -55,6 +57,19 @@ function playMusic() {
   } else {
     playVideos();
   }
+  connect = 1;
+  //alert(count);
+}
+
+function changeVideo(videoId) {
+    player.loadVideoById(videoId);
+}
+
+function next() {
+  count = 0;
+  //alert(count);
+  targetAnswer.style.visibility = "hidden";
+  
 }
 
 // api 코드 다운로드 후 제어관련 함수 생성. 
@@ -103,10 +118,6 @@ function playVideos() {
   setTimeout(function() {
     targetAnswerBtn.style.visibility = "visible";
   } , 3000);
-}
-
-function after3() {
-  
 }
 
 /*
