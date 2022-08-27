@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Guessing the SONG!</title>
+        <title>TEST</title>
         <style>
             body {
                 font-family: Arial;
@@ -14,17 +14,20 @@
     </head>
     
     <body align="center">
-        <h1>-Guessing the sonG-</h1>
+        <h1>-TEST-</h1>
         <form>
             <input type="button" class="button" value="play" onclick="playVideo();">
-            <!--<input type="button" class="button" value="pause" onclick="pauseVideo();">-->
+            <input type="button" class="button" value="pause" onclick="pauseVideo();">
         </form>
         <div id="player" hidden="True">
             
         </div>
-        <span id="Title">TITLE</span>
 
-        <script type="text/javascript" src="guess.js"></script> 
+        <script type="text/javascript">
+            setTimeout(function() {
+                alert("helloworld");
+            }, 3000);
+        </script> 
     </body>
 </html>
 

@@ -36,11 +36,14 @@ function unMute() {
 function playVideo() {
   //setTimeout(playVideo(), 3000);
   player.playVideo();
-  //after3();
+  after3();
 }
 
 function after3() {
-  setTimeout(pauseVideo(), 3000);
+  setTimeout(function() {
+    stopVideo();
+  } , 3000);
+  
 }
 
 /*
@@ -60,6 +63,8 @@ function pauseVideo() {
   player.pauseVideo();
 }
 
+// 제목관련
+var tagetTitle = document.getElementById("Title");
 
 
 //<iframe width="560" height="315" src="https://www.youtube.com/embed/04tYkKUPPv4?controls=0" title="YouTube video player"></iframe>
