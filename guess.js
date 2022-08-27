@@ -10,7 +10,7 @@ function onYouTubePlayerAPIReady() {
   player = new YT.Player('player', {
     height: '315',
     width: '560', 
-    videoId: '04tYkKUPPv4',
+    videoId: 'I0_ZXHzKysc',
     //autoplay: 1,
     playerVars: {
       'playsinline': 1
@@ -68,3 +68,4 @@ var tagetTitle = document.getElementById("Title");
 
 
 //<iframe width="560" height="315" src="https://www.youtube.com/embed/04tYkKUPPv4?controls=0" title="YouTube video player"></iframe>
+//https://music.youtube.com/watch?v=3d-D5bLDZSk&feature=share
