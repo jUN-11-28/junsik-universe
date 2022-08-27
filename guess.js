@@ -39,7 +39,7 @@ function getMusicInfo() {
 function showAnswer() {
   document.getElementById("Title").innerText = title;
   document.getElementById("Artist").innerText = artist;
-  targetAlbumArt.src = "https://i.ytimg.com/vi/"+ id +"/maxresdefault.jpg"
+  targetAlbumArt.src = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
   targetAnswer.style.visibility = "visible";
   targetAnswerBtn.style.visibility = "hidden";
   targetPlayBtn.style.visibility = "hidden";
