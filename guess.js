@@ -115,6 +115,7 @@ function playVideo() {
 
 function playVideos() {
   //setTimeout(playVideo(), 3000);
+  targetAnswerBtn.style.visibility = "hidden";
   player.playVideo();
   setTimeout(function() {
     stopVideo();
