@@ -1,10 +1,11 @@
 // 제목관련
 var targetTitle = document.getElementById("Title");
+var targetArtist = document.getElementById("Artist");
 
 // answerZone
 var targetAnswer = document.getElementById("answerZone");
 var targetAnswerBtn = document.getElementById("answerBtn");
-targetAnswer.style.visibility = "visible";
+targetAnswer.style.visibility = "hidden";
 targetAnswerBtn.style.visibility = "hidden";
 
 function next() {
@@ -12,28 +13,23 @@ function next() {
 }
 // json music fetch할려고 하는데 어케 하지,,,
 
-var mydata = JSON.parse(music);
-alert(mydata.music[0].Title);
-
 var id;
 var title;
 function getMusicInfo() {
-  /*
-    fetch("./music.js")
+  let random = Math.floor( ( Math.random() * (3 - 0) + 0 ) );
+    fetch("http://junsik-universe.com/music.json")
       .then(function (response) {
         return response.json();
       })
       .then(function (json) {
         console.log(json);
-        id = json.music[0].id;
-        title = json.music[0].Title;
-        artist = json.music[0].Artist;
+        id = json.music[random].id;
+        title = json.music[random].Title;
+        artist = json.music[random].Artist;
+        targetTitle.innerText = title;
+        targetArtist.innerText = artist;
       });
-      */
-
-      let musicInfo = JSON.parse(JSON.stringify(musicInfo));
-      id = musicInfo.music[0].id;
-      targetTitle.innerText = id;
+      
 }
 
 
@@ -47,13 +43,14 @@ function showAnswer() {
 
 var count = 0;
 function playMusic() {
-  getMusicInfo();
-  //비동기방식으로 아이프레임 플레이어 API 코드를 불러옵니다. 
-  var tag = document.createElement('script'); 
-  tag.src = "https://www.youtube.com/player_api"; 
-  var firstScriptTag = document.getElementsByTagName('script')[0]; 
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag); 
+   
   if (count == 0) {
+    getMusicInfo();
+    //비동기방식으로 아이프레임 플레이어 API 코드를 불러옵니다. 
+    var tag = document.createElement('script'); 
+    tag.src = "https://www.youtube.com/player_api"; 
+    var firstScriptTag = document.getElementsByTagName('script')[0]; 
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     playVideo();
   } else {
     playVideos();
