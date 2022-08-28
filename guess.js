@@ -10,6 +10,8 @@ targetAnswer.style.visibility = "hidden";
 targetAnswerBtn.style.visibility = "hidden";
 targetAlbumArt.style.visibility = "hidden";
 
+var audio = new Audio('clickEffect.m4a');
+
 //비동기방식으로 아이프레임 플레이어 API 코드를 불러옵니다. 
 var tag = document.createElement('script'); 
 tag.src = "https://www.youtube.com/player_api"; 
@@ -35,6 +37,7 @@ function getMusicInfo() {
 
 // 정답보기 버튼 누른후 실행 하는거
 function showAnswer() {
+  audio.play();
     targetArtist.innerText = artist;
     targetTitle.innerText = title;
     targetAlbumArt.src = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
@@ -49,6 +52,7 @@ var count = 0;
 var connect = 0; //첫번째 접속인지 확인
 // Play 버튼 눌렀을때
 function playMusic() {
+  audio.play();
   done = false;
   if (connect == 0) {
     targetPlayBtn.style.visibility = "hidden";
