@@ -52,6 +52,7 @@ var connect = 0; //첫번째 접속인지 확인
 function playMusic() {
   done = false;
   if (connect == 0) {
+    targetPlayBtn.style.visibility = "hidden";
     playIntro();
   } else if (connect == 1) {
     targetVideo.style.visibility = "hidden";
@@ -115,6 +116,7 @@ function onPlayerStateChange(event) {
     setTimeout(function() {
       stopVideo();
       getMusicInfo();
+      targetPlayBtn.style.visibility = "visible";
       targetVideo.style.visibility = "hidden";
     } , 4500);
     done = true;
