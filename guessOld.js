@@ -8,7 +8,6 @@ var targetVideo = document.getElementById("videoZone");
 var targetAlbumArt = document.getElementById("albumArt");
 targetAnswer.style.visibility = "hidden";
 targetAnswerBtn.style.visibility = "hidden";
-targetAlbumArt.style.visibility = "hidden";
 
 //비동기방식으로 아이프레임 플레이어 API 코드를 불러옵니다. 
 var tag = document.createElement('script'); 
@@ -27,21 +26,23 @@ function getMusicInfo() {
     return response.json();
   })
   .then(function (json) {
+    //console.log(json);
     id = json.music[random].id;
     title = json.music[random].Title;
     artist = json.music[random].Artist;
+    targetTitle.innerText = title;
+    targetArtist.innerText = artist;
+    targetAlbumArt.src = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
   }); 
 }
 
 // 정답보기 버튼 누른후 실행 하는거
 function showAnswer() {
-    targetArtist.innerText = artist;
-    targetTitle.innerText = title;
-    targetAlbumArt.src = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
+  document.getElementById("Title").innerText = title;
+  document.getElementById("Artist").innerText = artist;
   targetAnswer.style.visibility = "visible";
   targetAnswerBtn.style.visibility = "hidden";
-  targetAlbumArt.style.visibility = "visible";
-  getMusicInfo();
+  targetPlayBtn.style.visibility = "hidden";
   count = 0;
 }
 
@@ -53,12 +54,15 @@ function playMusic() {
   if (connect == 0) {
     targetPlayBtn.style.visibility = "hidden";
     playIntro();
-    getMusicInfo();
+  } else if (connect == 1) {
+    targetVideo.style.visibility = "hidden";
+    if (count == 0) {
+      changeVideo(id);
+    }
+    musicOn();
   } else {
     if (count == 0) {
-        targetAlbumArt.style.visibility = "hidden";
-        targetAnswer.style.visibility = "hidden";
-        changeVideo(id);
+      changeVideo(id);
     }
     musicOn();
   }
@@ -76,6 +80,13 @@ function playIntro() {
   player.playVideo();
 }
 
+function next() {
+  count = 0;
+  getMusicInfo();
+  targetAnswer.style.visibility = "hidden";
+  targetPlayBtn.style.visibility = "visible";
+}
+
 // youtube api가 불러와지면 바로 실행되는 거임 (유튜브 제공) 
 // 아래부터는 다 유튜브 관련 함수들임
 var player; 
@@ -85,8 +96,6 @@ function onYouTubePlayerAPIReady() {
     width: '100%', 
     videoId: id,
     autoplay: 0,
-    controls: 0,
-    modestbranding:1,
     playerVars: {
       'playsinline': 1
     }, 

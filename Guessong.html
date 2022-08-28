@@ -9,45 +9,125 @@
                 font-family: Arial;
                 background-color: gray;
             }
-            .button {
-                font-size: xx-large;
+            .wrap {
+                margin:0 auto;
+            }
+            *{margin: 0; padding: 0;}
+           .container {
+                position: fixed;
+                width: 100%;
+           }
+           @media (min-width:600px) {
+            .container {
+                position: fixed;
+                width: 600px;
+                margin:0 auto;
+                left:50%;
+                margin-left:-300px;
+           }
+           }
+           .box {
+                width: 100%;
+                position: relative;
+           }
+           .back {
+                width:83%;
+                margin-left: 8.5%;
+                margin-top: 14%;
+                position: absolute;
+
+           }
+           #videoZone {
+                width:83%;
+                margin-left: 8.5%;
+                margin-top: 6.5%;
+                position: absolute;
+
+           }
+           .front {
+                position: absolute;
+           }
+           #playBtn {
+                position: absolute;
+                width: 100%;
+                margin-top: 99.9%;
+                margin-left: 12.1%;
+
+           }
+           #answerBtn {
+                position: absolute;
+                width: 100%;
+                margin-top: 104.5%;
+                margin-left: 43.2%;
+
+           }
+           .albumArt {
+                width:83%;
+                margin-left: 8.5%;
+                margin-top: 6.5%;
+                position: absolute;
+           }
+           #answerZone {
+                text-align: center;
+                width: 100%;
+                margin-top: 63.6%;
+                position: absolute;
+           }
+           #Title {
+                font-size: 6vw;
+                font-weight: 100;
+           }
+           @media (min-width:600px) {
+                #Title {
+                    font-size: 36px;
+                    font-weight: 100;
+                }
+           }
+           #Artist {
+                font-size: 3vw;
+                font-weight: 700;
+           }
+           @media (min-width:600px) {
+            #Artist {
+                font-size: 18px;
+                font-weight: 700;
+            }
             }
         </style>
     </head>
     
-    <body align="center">
-        <span>update 28Aug22 14:08</span>
+    <body >
+        <span>update 29Aug22 02:55</span>
         <br>
-        <h1>-GueSs the SonG-</h1>
-        <form>
-            <input type="button" class="button" value="Play" onclick="playMusic();" id="playBtn">
-            <input type="button" class="button" value="정답보기" onclick="showAnswer();" id="answerBtn">
-            <!--<input type="button" class="button" value="pause" onclick="pauseVideo();">-->
-        </form>
-        
-        <div id="answerZone">
-            <span id="Title">TITLE</span>
-            <br>
-            <span id="Artist">ARTIST</span>
-            <br>
-            <input type="button" class="button" value="Next" onclick="next();">
-            <br>
-            <img width="70%" id="albumArt">
-        </div>
-        <div id="videoZone">
-            <div id="player">
-            
+        <span>Only for mobile!!</span>
+        <div class="wrap">
+        <div class="container">
+            <div class="box">
+                
+                <div class="back">
+                    <img src="ttt.png" width="100%">
+                    
+                </div>
+                <div id="videoZone">
+                    <div id="player">
+                    
+                    </div>
+                </div>
+                <div class="albumArt"><img id="albumArt" width="100%"></div>
+                <div class="front"><img src="gameControl.png" width="100%" ></div>
+                <div id="playBtn"><input type="image" name="button" src="playBtn.png" onclick="playMusic();" width="23%"></div>
+                <div id="answerBtn"><input type="image" name="button" src="ansBtn.png" onclick="showAnswer();" width="44%"></div>
+                <div id="answerZone">
+                    <span id="Title">TITLE</span>
+                    <br>
+                    <span id="Artist">ARTIST</span>
+                </div>
+                
             </div>
         </div>
+    </div>
        
-        
         <script type="text/javascript" src="guess.js"></script> 
+
     </body>
 </html>
-
-<!--
-    iu
-https://music.youtube.com/browse/VLOLAK5uy_mgryJlILDE846ev_oLUtqPgtKuA92zdBs
-    twice
-https://music.youtube.com/browse/VLOLAK5uy_mGPd1ASltST1pPNsekZXKO2VwGUFp_FQs
--->
