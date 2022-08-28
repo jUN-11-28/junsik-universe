@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>GueSs the SonG!</title>
+        <script type="text/javascript" src="music.json"></script>
+        <style>
+            body {
+                font-family: Arial;
+                background-color: gray;
+            }
+            *{margin: 0; padding: 0;}
+           .container {
+                width: 100%;
+           }
+           .box {
+                width: 100%;
+                position: relative;
+           }
+           .back {
+                position: absolute;
+                margin-top: 25%;
+
+           }
+           .front {
+                position: absolute;
+           }
+           .playBtn {
+                position: absolute;
+                margin-left: 12.7%;
+                margin-top: 113.7%;
+           }
+           .ansBtn {
+                position: absolute;
+                margin-left: 43.2%;
+                margin-top: 118.3%;
+           }
+            
+        </style>
+    </head>
+    
+    <body align="center">
+        <span>update 28Aug22 14:08</span>
+        <br>
+        <h1>-GueSs the SonG-</h1>
+        <div class="container">
+
+            <div class="box">
+                
+                <div class="back" id="videoZone">
+                    <div id="player">
+                    
+                    </div>
+                </div>
+                <div class="front"><img src="gameControl.png" width="100%"></div>
+                <div class="playBtn"><input type="image" name="button" src="playBtn.png" width="100%" onclick="playMusic();"></div>
+                <div class="ansBtn"><input type="image" name="button" src="ansBtn.png" width="100%" onclick="showAnswer();"></div>
+                
+            </div>
+            
+            
+
+        </div>
+
+        <script type="text/javascript" src="guesstest.js"></script> 
+
+    </body>
+</html>
