@@ -8,12 +8,15 @@
             body {
                 font-family: Arial;
                 background-color: gray;
+                text-align: center;
             }
             *{margin: 0; padding: 0;}
            .container {
+                text-align: center;
                 width: 100%;
            }
            .box {
+                text-align: center;
                 width: 100%;
                 position: relative;
            }
@@ -27,13 +30,17 @@
            }
            .playBtn {
                 position: absolute;
-                margin-left: 12.7%;
-                margin-top: 113.7%;
+                width: 100%;
+                margin-top: 113.3%;
+                margin-left: -26%;
+
            }
            .ansBtn {
                 position: absolute;
-                margin-left: 43.2%;
+                width: 100%;
                 margin-top: 118.3%;
+                margin-left: 15.2%;
+
            }
             
         </style>
@@ -45,13 +52,14 @@
             <div class="box">
                 
                 <div class="back" id="videoZone">
+                    <Img src="ttt.png" width="100%">
                     <div id="player">
                     
                     </div>
                 </div>
-                <div class="front"><img src="gameControl.png" ></div>
-                <div class="playBtn"><input type="image" name="button" src="playBtn.png" onclick="playMusic();"></div>
-                <div class="ansBtn"><input type="image" name="button" src="ansBtn.png" onclick="showAnswer();"></div>
+                <div class="front"><img src="gameControl.png" width="100%" ></div>
+                <div class="playBtn"><input type="image" name="button" src="playBtn.png" onclick="playMusic();" width="23%"></div>
+                <div class="ansBtn"><input type="image" name="button" src="ansBtn.png" onclick="showAnswer();" width="44%"></div>
                 
             </div>
             
