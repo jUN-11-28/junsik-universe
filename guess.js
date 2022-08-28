@@ -16,7 +16,7 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // 노래관련 변수들
-var id = "gE9vcSbENwo";
+var id = "gE9vcSbENwo"; // 인트로 영상 주소임
 var title = "junsik forever";
 function getMusicInfo() {
   let random = Math.floor((Math.random() * (50 - 0) + 0));
@@ -36,6 +36,7 @@ function getMusicInfo() {
   }); 
 }
 
+// 정답보기 버튼 누른후 실행 하는거
 function showAnswer() {
   document.getElementById("Title").innerText = title;
   document.getElementById("Artist").innerText = artist;
@@ -47,37 +48,35 @@ function showAnswer() {
 
 var count = 0;
 var connect = 0; //첫번째 접속인지 확인
+// Play 버튼 눌렀을때
 function playMusic() {
+  done = false;
   if (connect == 0) {
     playIntro();
   } else if (connect == 1) {
     targetVideo.style.visibility = "hidden";
-      if (count == 0) {
-        getMusicInfo();
-        changeVideo(id);
-        
-        playVideo();
-      } else {
-        playVideos();
-      }
-  } else {
-    //targetVideo.style.visibility = "hidden";
     if (count == 0) {
-      playVideo();
       changeVideo(id);
-    } else {
-      playVideos();
     }
+    musicOn();
+  } else {
+    if (count == 0) {
+      changeVideo(id);
+    }
+    musicOn();
   }
   connect++;
 }
 
-function playIntro() {
-  player.playVideo();
+function musicOn() {
+  targetPlayBtn.style.visibility = "hidden";
+  targetAnswerBtn.style.visibility = "hidden";
+  playVideo();
+  count++;
 }
 
-function changeVideo(videoId) {
-  player.loadVideoById(videoId);
+function playIntro() {
+  player.playVideo();
 }
 
 function next() {
@@ -87,70 +86,63 @@ function next() {
   targetPlayBtn.style.visibility = "visible";
 }
 
-// api 코드 다운로드 후 제어관련 함수 생성. 
+// youtube api가 불러와지면 바로 실행되는 거임 (유튜브 제공) 
+// 아래부터는 다 유튜브 관련 함수들임
 var player; 
 function onYouTubePlayerAPIReady() { 
   player = new YT.Player('player', {
     //height: '315',
     width: '100%', 
     videoId: id,
-    //autoplay: 1,
+    autoplay: 0,
     playerVars: {
       'playsinline': 1
     }, 
     events: { 
       'onReady': onPlayerReady, 
-      //'onStateChange': onPlayerStateChange
+      'onStateChange': onPlayerStateChange
     } 
   }); 
 }; 
 
 function onPlayerReady (event) {
-  event.target.playVideo();
-  //event.target.mute();
-  //player.playVideo();
-  //event.target.unmute();
-}
-
-function playVideo() {
-  //setTimeout(playVideo(), 3000);
-  //player.playVideo();
-  setTimeout(function() {
-    stopVideo();
-  } , 3000);
-  setTimeout(function() {
-    targetAnswerBtn.style.visibility = "visible";
-  } , 3000);
-  count = 1;
-}
-
-function playVideos() {
-  //setTimeout(playVideo(), 3000);
-  targetAnswerBtn.style.visibility = "hidden";
-  player.playVideo();
-  setTimeout(function() {
-    stopVideo();
-  } , 5000);
-  setTimeout(function() {
-    targetAnswerBtn.style.visibility = "visible";
-  } , 5000);
+  event.target.stopVideo();
 }
 
 var done = false;
 function onPlayerStateChange(event) {
-  
+  if (event.data == YT.PlayerState.PLAYING && !done && connect == 1) {
+    setTimeout(function() {
+      stopVideo();
+      getMusicInfo();
+      targetVideo.style.visibility = "hidden";
+    } , 4500);
+    done = true;
+  } else if (event.data == YT.PlayerState.PLAYING && !done && connect > 1) {
+    setTimeout(function() {
+      stopVideo();
+      targetAnswerBtn.style.visibility = "visible";
+      targetPlayBtn.style.visibility = "visible";
+    } , 3000);
+    done = true;
+  }
 }
 
+function changeVideo(videoId) {
+  player.loadVideoById(videoId);
+}
+
+// 재생하는거
+function playVideo() {
+  player.playVideo();
+}
+
+// 음 초기화하는거? 멈추면 0초로 가는거있져?
 function stopVideo() {
   player.stopVideo();
 }
 
+// 그냥 그 시점에 멈추는 거
 function pauseVideo() {
   player.pauseVideo();
 }
-
-
-
-
-//<iframe width="560" height="315" src="https://www.youtube.com/embed/04tYkKUPPv4?controls=0" title="YouTube video player"></iframe>
-//https://music.youtube.com/watch?v=3d-D5bLDZSk&feature=share
