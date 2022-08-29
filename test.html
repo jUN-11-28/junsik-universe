@@ -4,30 +4,17 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>TEST</title>
         <style>
-            body {
-                font-family: Arial;
-            }
-            .button {
-                font-size: xx-large;
+            #toggle {
+                margin-left: 10%;
             }
         </style>
     </head>
     
-    <body align="center">
-        <h1>-TEST-</h1>
-        <form>
-            <input type="button" class="button" value="play" onclick="playVideo();">
-            <input type="button" class="button" value="pause" onclick="pauseVideo();">
-        </form>
-        <div id="player" hidden="True">
-            
-        </div>
-
-        <script type="text/javascript">
-            setTimeout(function() {
-                alert("helloworld");
-            }, 3000);
-        </script> 
+    <body>
+        <h1>test</h1>
+        <img src="guessSrc/toggle.png" id="toggle" onmousedown="MouseMove(this);">
+        
+        <script type="text/javascript" src="drag.js"></script> 
     </body>
 </html>
 

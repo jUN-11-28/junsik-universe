@@ -5,6 +5,10 @@
         <title>GueSs the SonG!</title>
         <script type="text/javascript" src="music.json"></script>
         <style>
+            @font-face {
+                font-family: 'lab_digital';
+                src: url('guessSrc/LABDIGITAL.ttf') format('truetype');
+            }
             body {
                 font-family: Arial;
                 background-color: gray;
@@ -61,12 +65,65 @@
                 margin-left: 43.2%;
 
            }
+           #settingBtn {
+                position: absolute;
+                width: 100%;
+                margin-top: 132.9%;
+                margin-left: 4.04%;
+
+           }
+           #toggle {
+                position: absolute;
+                width: 100%;
+                margin-top: 32.5%;
+                margin-left: 52%;
+
+           }
            .albumArt {
                 width:83%;
                 margin-left: 8.5%;
                 margin-top: 6.5%;
                 position: absolute;
            }
+           #settingDisplay {
+                width:84%;
+                margin-left: 8%;
+                margin-top: 14%;
+                position: absolute;
+           }
+           .slideContainer {
+                width:100%;
+                margin-left: 14%;
+                margin-top: 37%;
+                position: absolute;
+           }
+           .slider {
+                -webkit-appearance: none;
+                width: 68%;
+                height: 1vh;
+                border-radius: 5px;
+                background-color: #000000;
+                outline: none;
+                opacity: 1;
+                cursor: pointer;
+           }
+           .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 3vh;
+                height: 5vh;
+                border-radius: 20%;
+                margin: 1vh;
+                background: #ffffff;
+                cursor: pointer;
+            }
+            .slider::-moz-range-thumb {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: #04AA6D;
+                cursor: pointer;
+            }
            #answerZone {
                 text-align: center;
                 width: 100%;
@@ -88,22 +145,37 @@
                 font-weight: 700;
            }
            @media (min-width:600px) {
-            #Artist {
-                font-size: 18px;
-                font-weight: 700;
+                #Artist {
+                    font-size: 18px;
+                    font-weight: 700;
+                }
             }
+            #playback {
+                font-family: lab_digital;
+                font-size: 5vw;
+            }
+            @media (min-width:600px) {
+                #playback {
+                    font-size: 30px;
+                }
+            }
+            .playback {
+                text-align: center;
+                width: 100%;
+                margin-top: 45%;
+                position: absolute;
             }
         </style>
     </head>
     
     <body >
-        <span>ver.2_2908221143</span>
+        <span>ver.2_2908221839</span>
         <div class="wrap">
         <div class="container">
             <div class="box">
                 
                 <div class="back">
-                    <img src="ttt.png" width="100%">
+                    <img src="guessSrc/ttt.png" width="100%">
                     
                 </div>
                 <div id="videoZone">
@@ -112,9 +184,23 @@
                     </div>
                 </div>
                 <div class="albumArt"><img id="albumArt" width="100%"></div>
-                <div class="front"><img src="gameControl.png" width="100%" ></div>
-                <div id="playBtn"><input type="image" name="button" src="playBtn.png" onclick="playMusic();" width="23%"></div>
-                <div id="answerBtn"><input type="image" name="button" src="ansBtn.png" onclick="showAnswer();" width="44%"></div>
+                <div class="front"><img src="guessSrc/gameControl.png" width="100%" ></div>
+                <div id="playBtn"><input type="image" name="button" src="guessSrc/playBtn.png" onclick="playMusic();" width="23%"></div>
+                <div id="answerBtn"><input type="image" name="button" src="guessSrc/ansBtn.png" onclick="showAnswer();" width="44%"></div>
+                <div id="settingBtn"><input type="image" name="button" src="guessSrc/settingBtn.png" onclick="showSetting();" width="13.5%"></div>
+                <div id="settings">
+                    <div id="settingDisplay"><img src="guessSrc/settingDisplay.png" width="100%"></div>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="5" value="2" class="slider" id="myRange" >
+                    </div>
+                    
+                    <!--div id="toggle"><img src="guessSrc/toggle.png" width="6%" onmousedown="startDrag(event, this)"></div-->
+                    <div class="playback"><span id="playback"><span id="seconds">3</span> SECONDS</span></div>
+                    
+                </div>
+                
+
+
                 <div id="answerZone">
                     <span id="Title">TITLE</span>
                     <br>

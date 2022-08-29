@@ -6,11 +6,17 @@ var targetAnswerBtn = document.getElementById("answerBtn");
 var targetPlayBtn = document.getElementById("playBtn");
 var targetVideo = document.getElementById("videoZone");
 var targetAlbumArt = document.getElementById("albumArt");
+var targetSettings = document.getElementById("settings");
+var targetSettingBtn = document.getElementById("settingBtn");
+var targetSeconds = document.getElementById("seconds");
 targetAnswer.style.visibility = "hidden";
 targetAnswerBtn.style.visibility = "hidden";
 targetAlbumArt.style.visibility = "hidden";
+targetSettingBtn.style.visibility = "visible";
+targetSettings.style.visibility = "hidden";
 
 var audio = new Audio('clickEffect.m4a');
+var seconds = 3;
 
 //비동기방식으로 아이프레임 플레이어 API 코드를 불러옵니다. 
 var tag = document.createElement('script'); 
@@ -71,6 +77,19 @@ function playMusic() {
   connect++;
 }
 
+var setBtnCnt = 0;
+function showSetting() {
+  audio.play();
+  if (setBtnCnt == 0) {
+    targetSettings.style.visibility = "visible";
+    setBtnCnt = 1;
+  } else {
+    targetSettings.style.visibility = "hidden";
+    setBtnCnt = 0;
+  }
+  
+}
+
 function musicOn() {
   targetPlayBtn.style.visibility = "hidden";
   targetAnswerBtn.style.visibility = "hidden";
@@ -80,6 +99,17 @@ function musicOn() {
 
 function playIntro() {
   player.playVideo();
+}
+
+var slider = document.getElementById("myRange");
+slider.value = seconds;
+targetSeconds.innerText = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  audio.play();
+  targetSeconds.innerText = this.value;
+  seconds = this.value;
 }
 
 // youtube api가 불러와지면 바로 실행되는 거임 (유튜브 제공) 
@@ -122,7 +152,7 @@ function onPlayerStateChange(event) {
       stopVideo();
       targetAnswerBtn.style.visibility = "visible";
       targetPlayBtn.style.visibility = "visible";
-    } , 3000);
+    } , seconds * 1000);
     done = true;
   }
 }
@@ -145,3 +175,8 @@ function stopVideo() {
 function pauseVideo() {
   player.pauseVideo();
 }
+
+/////
+/////
+/////
+/////
