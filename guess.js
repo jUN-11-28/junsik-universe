@@ -87,9 +87,6 @@ function next() {
   }
   targetProfile.src = themes[theme] + ".png";
   //targetChooseTheme.src = themes[theme] + "btn.png";
-  getMusicInfo();
-  changeVideo(id);
-  playVideo();
 }
 
 function prev() {
@@ -101,9 +98,6 @@ function prev() {
   }
   targetProfile.src = themes[theme] + ".png";
   //targetChooseTheme.src = themes[theme] + "btn.png";
-  getMusicInfo();
-  changeVideo(id);
-  playVideo();
 }
 
 var themeCnt = 0;
@@ -113,10 +107,9 @@ function chooseTheme() {
     targetTheme.style.visibility = "visible";
     targetAnswer.style.visibility = "hidden";
     targetAlbumArt.style.visibility = "hidden";
+    targetPlayBtn.style.visibility = "hidden";
+    targetAnswerBtn.style.visibility = "hidden";
     targetChooseTheme.src = "guessSrc/selectBtn.png";
-    getMusicInfo();
-    changeVideo(id);
-    playVideo();
     themeCnt = 1;
   } else {
     targetTheme.style.visibility = "hidden";
