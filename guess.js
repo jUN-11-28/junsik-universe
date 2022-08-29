@@ -46,12 +46,20 @@ function getMusicInfo() {
   })
   .then(function (json) {
     numOfSongs = json.numOfSongs - 1;
+    let random = Math.floor((Math.random() * (numOfSongs - 0) + 0));
+    id = json.music[random].id;
+    title = json.music[random].Title;
+    artist = json.music[random].Artist;
+
+    /*
+    numOfSongs = json.numOfSongs - 1;
     if (songCnt == numOfSongs) {
       for (var i = 1; i < 100; i++) {
         dupChecker[i] = 0;
       }
       songCnt = 0;
     }
+    
     let random = -1;
     while (random == -1) {
       random = Math.floor((Math.random() * (numOfSongs - 0) + 0));
@@ -65,6 +73,7 @@ function getMusicInfo() {
         random = -1;
       }
     }
+    */
   }); 
 }
 
@@ -158,7 +167,9 @@ function playMusic() {
         targetAlbumArt.style.visibility = "hidden";
         targetAnswer.style.visibility = "hidden";
         changeVideo(id);
+        console.log(title + artist + id);
     }
+    alert(title+artist+id);
     musicOn();
   }
   connect++;
