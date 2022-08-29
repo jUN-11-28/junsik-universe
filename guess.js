@@ -111,12 +111,15 @@ function chooseTheme() {
   audio.play();
   if (themeCnt == 0) {
     targetTheme.style.visibility = "visible";
+    targetAnswer.style.visibility = "hidden";
+    targetAlbumArt.style.visibility = "hidden";
     targetChooseTheme.src = "guessSrc/selectBtn.png";
 
     themeCnt = 1;
   } else {
     targetTheme.style.visibility = "hidden";
     targetChooseTheme.src = themes[theme] + "btn.png";
+    targetPlayBtn.style.visibility = "visible";
     songCnt = 0;
     for (var i = 1; i < 100; i++) {
       dupChecker[i] = 0;
