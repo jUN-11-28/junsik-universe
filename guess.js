@@ -37,14 +37,16 @@ function getMusicInfo() {
 
 // 정답보기 버튼 누른후 실행 하는거
 function showAnswer() {
-  audio.play();
+    audio.play();
+    targetAnswerBtn.style.visibility = "hidden";
     targetArtist.innerText = artist;
     targetTitle.innerText = title;
     targetAlbumArt.src = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
-  targetAnswer.style.visibility = "visible";
-  targetAnswerBtn.style.visibility = "hidden";
-  targetAlbumArt.style.visibility = "visible";
-  getMusicInfo();
+    setTimeout(function() {
+      targetAnswer.style.visibility = "visible";
+      targetAlbumArt.style.visibility = "visible";
+      getMusicInfo();
+    }, 500);
   count = 0;
 }
 
