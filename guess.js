@@ -9,11 +9,17 @@ var targetAlbumArt = document.getElementById("albumArt");
 var targetSettings = document.getElementById("settings");
 var targetSettingBtn = document.getElementById("settingBtn");
 var targetSeconds = document.getElementById("seconds");
+var targetProfile = document.getElementById("profile");
+var targetTheme = document.getElementById("theme");
+var targetChooseTheme = document.getElementById("chooseTheme");
 targetAnswer.style.visibility = "hidden";
 targetAnswerBtn.style.visibility = "hidden";
 targetAlbumArt.style.visibility = "hidden";
 targetSettingBtn.style.visibility = "visible";
 targetSettings.style.visibility = "hidden";
+targetChooseTheme.src = "guessSrc/chooseTheme.png";
+targetChooseTheme.style.visibility = "hidden";
+targetTheme.style.visibility = "hidden";
 
 var audio = new Audio('clickEffect.m4a');
 var seconds = 3;
@@ -27,23 +33,104 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // 노래관련 변수들
 var id = "gE9vcSbENwo"; // 인트로 영상 주소임
 var title = "junsik forever";
+var numOfSongs = 0;
+var dupChecker = new Array(100);
+var songCnt = 0;
+for (var i = 1; i < 100; i++) {
+  dupChecker[i] = 0;
+}
 function getMusicInfo() {
-  let random = Math.floor((Math.random() * (50 - 0) + 0));
-
-  fetch("http://junsik-universe.com/music.json")
+  fetch("http://junsik-universe.com/" + themes[theme]+ ".json")
   .then(function (response) {
     return response.json();
   })
   .then(function (json) {
-    id = json.music[random].id;
-    title = json.music[random].Title;
-    artist = json.music[random].Artist;
+    numOfSongs = json.numOfSongs - 1;
+    if (songCnt == numOfSongs) {
+      for (var i = 1; i < 100; i++) {
+        dupChecker[i] = 0;
+      }
+      songCnt = 0;
+    }
+    let random = -1;
+    while (random == -1) {
+      random = Math.floor((Math.random() * (numOfSongs - 0) + 0));
+      if (dupChecker[random] == 0) {
+        dupChecker[random] = 1;
+        id = json.music[random].id;
+        title = json.music[random].Title;
+        artist = json.music[random].Artist;
+        songCnt++;
+      } else {
+        random = -1;
+      }
+    }
   }); 
+}
+
+
+// theme 관련
+var themes = [];
+var theme = 0;
+themes[0] = "guessSrc/IU";
+themes[1] = "guessSrc/2022";
+const numOfThemes = 2;
+
+targetProfile.src = themes[0]  + ".png";
+
+function next() {
+  audio.play();
+  if(theme == numOfThemes - 1) {
+    theme = 0;
+  } else {
+    theme++;
+  }
+  targetProfile.src = themes[theme] + ".png";
+  //targetChooseTheme.src = themes[theme] + "btn.png";
+  getMusicInfo();
+  changeVideo(id);
+  playVideo();
+}
+
+function prev() {
+  audio.play();
+  if(theme == 0) {
+    theme = numOfThemes - 1;
+  } else {
+    theme--;
+  }
+  targetProfile.src = themes[theme] + ".png";
+  //targetChooseTheme.src = themes[theme] + "btn.png";
+  getMusicInfo();
+  changeVideo(id);
+  playVideo();
+}
+
+var themeCnt = 0;
+function chooseTheme() {
+  audio.play();
+  if (themeCnt == 0) {
+    targetTheme.style.visibility = "visible";
+    targetChooseTheme.src = "guessSrc/selectBtn.png";
+
+    themeCnt = 1;
+  } else {
+    targetTheme.style.visibility = "hidden";
+    targetChooseTheme.src = themes[theme] + "btn.png";
+    songCnt = 0;
+    for (var i = 1; i < 100; i++) {
+      dupChecker[i] = 0;
+    }
+
+    themeCnt = 0;
+  }
 }
 
 // 정답보기 버튼 누른후 실행 하는거
 function showAnswer() {
     audio.play();
+    targetSettings.style.visibility = "hidden";
+    setBtnCnt = 0;
     targetAnswerBtn.style.visibility = "hidden";
     targetArtist.innerText = artist;
     targetTitle.innerText = title;
@@ -61,6 +148,8 @@ var connect = 0; //첫번째 접속인지 확인
 // Play 버튼 눌렀을때
 function playMusic() {
   audio.play();
+  targetSettings.style.visibility = "hidden";
+  setBtnCnt = 0;
   done = false;
   if (connect == 0) {
     targetPlayBtn.style.visibility = "hidden";
@@ -143,8 +232,9 @@ function onPlayerStateChange(event) {
     setTimeout(function() {
       stopVideo();
       getMusicInfo();
-      targetPlayBtn.style.visibility = "visible";
+      targetChooseTheme.style.visibility = "visible";
       targetVideo.style.visibility = "hidden";
+
     } , 4500);
     done = true;
   } else if (event.data == YT.PlayerState.PLAYING && !done && connect > 1) {

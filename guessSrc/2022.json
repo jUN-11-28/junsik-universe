@@ -1,0 +1,215 @@
+{
+    "numOfSongs" : 35,
+    "music" : [
+        {
+            "Title" : "POP!",
+            "Artist" : "나연",
+            "Year" : 2022,
+            "id" : "R9TPed_ohKM"
+        },
+        {
+            "Title" : "SNEAKERS",
+            "Artist" : "ITZY",
+            "Year" : 2022,
+            "id" : "-uOShlFu1v8"
+        },
+        {
+            "Title" : "TOMBOY",
+            "Artist" : "(G)I-DLE",
+            "Year" : 2022,
+            "id" : "aFoqCI75WoY"
+        },
+        {
+            "Title" : "POP!",
+            "Artist" : "나연",
+            "Year" : 2022,
+            "id" : "R9TPed_ohKM"
+        },
+        {
+            "Title" : "LOVE DIVE",
+            "Artist" : "IVE",
+            "Year" : 2022,
+            "id" : "hh5GKVa8VtM"
+        },
+        {
+            "Title" : "봄여름가을겨울 (Still Life)",
+            "Artist" : "빅뱅",
+            "Year" : 2022,
+            "id" : "XJL-lduf174"
+        },
+        {
+            "Title" : "사랑인가 봐",
+            "Artist" : "멜로망스",
+            "Year" : 2022,
+            "id" : "0e7uplpFJdE"
+        },
+        {
+            "Title" : "INVU",
+            "Artist" : "태연",
+            "Year" : 2022,
+            "id" : "7nigXQS1Xb0"
+        },
+        {
+            "Title" : "GANADARA(feat. 아이유)",
+            "Artist" : "박재범",
+            "Year" : 2022,
+            "id" : "PK4ljesG8s0"
+        },
+        {
+            "Title" : "Feel My Rhythm",
+            "Artist" : "Red Velvet",
+            "Year" : 2022,
+            "id" : "OXWz_x6-dro"
+        },
+        {
+            "Title" : "Step Back",
+            "Artist" : "GOT the beat",
+            "Year" : 2022,
+            "id" : "zspA0I7xme4"
+        },
+        {
+            "Title" : "SMiLEY(feat. BIBI)",
+            "Artist" : "YENA",
+            "Year" : 2022,
+            "id" : "2KSWVz2tDEI"
+        },
+        {
+            "Title" : "SMARTPHONE",
+            "Artist" : "YENA",
+            "Year" : 2022,
+            "id" : "BKNYZpVo0Vo"
+        },
+        {
+            "Title" : "That That(prod. & feat. SUGA of BTS)",
+            "Artist" : "PSY",
+            "Year" : 2022,
+            "id" : "kjLUM7eNukg"
+        },
+        {
+            "Title" : "RUN2U",
+            "Artist" : "STAYC",
+            "Year" : 2022,
+            "id" : "W0x7GcZkvH4"
+        },
+        {
+            "Title" : "LOVE me",
+            "Artist" : "BE'O",
+            "Year" : 2022,
+            "id" : "blgQgkbr1qo"
+        },
+        {
+            "Title" : "ZOOM",
+            "Artist" : "Jessi",
+            "Year" : 2022,
+            "id" : "KXLCwmBVvwY"
+        },
+        {
+            "Title" : "버퍼링 Glitch Mode",
+            "Artist" : "NCT DREAM",
+            "Year" : 2022,
+            "id" : "5d-N5nfjDYw"
+        },
+        {
+            "Title" : "Seoul",
+            "Artist" : "볼빨간사춘기",
+            "Year" : 2022,
+            "id" : "yFXW3YQ5ufQ"
+        },
+        {
+            "Title" : "Real Love",
+            "Artist" : "OH MY GIRL",
+            "Year" : 2022,
+            "id" : "GjOxSJgI47I"
+        },
+        {
+            "Title" : "DM",
+            "Artist" : "fromis_9",
+            "Year" : 2022,
+            "id" : "QT60l6MSoz8"
+        },
+        {
+            "Title" : "WA DA DA",
+            "Artist" : "Kep1er",
+            "Year" : 2022,
+            "id" : "PpYidUXYscs"
+        },
+        {
+            "Title" : "O.O",
+            "Artist" : "NMIXX",
+            "Year" : 2022,
+            "id" : "P8W4p5UIfqA"
+        },
+        {
+            "Title" : "HOT",
+            "Artist" : "SEVENTEEN",
+            "Year" : 2022,
+            "id" : "jAk2WBAjzlI"
+        },
+        {
+            "Title" : "Beatbox",
+            "Artist" : "NCT DREAM",
+            "Year" : 2022,
+            "id" : "3PW1UcIKOyM"
+        },
+        {
+            "Title" : "Yet To Come!",
+            "Artist" : "BTS",
+            "Year" : 2022,
+            "id" : "Kh0OF8ZE8co"
+        },
+        {
+            "Title" : "After LIKE",
+            "Artist" : "IVE",
+            "Year" : 2022,
+            "id" : "g92HIac9ufA"
+        },
+        {
+            "Title" : "Attention",
+            "Artist" : "NewJeans",
+            "Year" : 2022,
+            "id" : "kdOS94IjzzE"
+        },
+        {
+            "Title" : "Hype Boy",
+            "Artist" : "NewJeans",
+            "Year" : 2022,
+            "id" : "ghrlZIMDzbM"
+        },
+        {
+            "Title" : "Cookie",
+            "Artist" : "NewJeans",
+            "Year" : 2022,
+            "id" : "0M4QMVQJRsw"
+        },
+        {
+            "Title" : "Hurt",
+            "Artist" : "NewJeans",
+            "Year" : 2022,
+            "id" : "8QWtOgBJZNc"
+        },
+        {
+            "Title" : "FEARLESS",
+            "Artist" : "LE SSERAFIM",
+            "Year" : 2022,
+            "id" : "Wk3Vxt3knnI"
+        },
+        {
+            "Title" : "BEAUTIFUL MONSTER",
+            "Artist" : "STAYC",
+            "Year" : 2022,
+            "id" : "gWvQrC_wjCI"
+        },
+        {
+            "Title" : "Sparkling",
+            "Artist" : "청하",
+            "Year" : 2022,
+            "id" : "i_3q1Wzlwy0"
+        },
+        {
+            "Title" : "Talk that Talk",
+            "Artist" : "TWICE",
+            "Year" : 2022,
+            "id" : "F2Y0Q9blUPk"
+        } 
+    ]
+}
