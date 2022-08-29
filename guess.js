@@ -114,7 +114,9 @@ function chooseTheme() {
     targetAnswer.style.visibility = "hidden";
     targetAlbumArt.style.visibility = "hidden";
     targetChooseTheme.src = "guessSrc/selectBtn.png";
-
+    getMusicInfo();
+    changeVideo(id);
+    playVideo();
     themeCnt = 1;
   } else {
     targetTheme.style.visibility = "hidden";
