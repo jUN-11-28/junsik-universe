@@ -12,7 +12,7 @@
                 padding: 0;
                 width: 100%;
                 height: 100%;
-                
+
             }       
 
             #header {
@@ -20,11 +20,12 @@
                 z-index: 999;
             }
             
-            #cameraView {
+            #cameraView, #cameraSensor{
                 position: fixed;
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
+                transform: scaleX(-1);
             }
 
             #trigger{
@@ -46,9 +47,10 @@
     <body>
         <div id="header">
             
-            <h2>Escape From POOP hand 2</h2>
+            <h2>Escape From POOP hand 3</h2>
         </div>
-        
+
+        <canvas id="cameraSensor"></canvas>
         <video autoplay="true" id="cameraView" width="100%" height="100%"></video>
         <button id="trigger">Take Photo</button>
 
