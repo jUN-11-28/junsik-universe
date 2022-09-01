@@ -6,8 +6,12 @@
         <!--meta http-equiv="X-UA-Compatible" content="ie=edge"-->
         <title>Escape From POOP hand</title>
         <style>
-            body {
-                text-align: center;
+
+            #cameraView {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                
             }
 
             #camera--trigger{
@@ -28,24 +32,24 @@
     </head>
     <body>
         <h2>Escape From POOP hand</h2>
-        <video autoplay="true" id="video" width="100%" height="100%"></video>
+        <video autoplay="true" id="cameraView" width="100%" height="100%"></video>
         <button id="camera--trigger">Take Photo</button>
 
         <script>
-            var video = document.querySelector("#video");
-
+            // facingMode: {exact:"environment"} // 후면 카메라 부를때!
+            var camera = { video : { facingMode: "user"}, audio:false };
+            var cameraView = document.querySelector("#cameraView");
+            
             function cameraOn() {
-                navigator.mediaDevices.getUserMedia();
-            }
-            if (navigator.mediaDevices.getUserMedia) {
-                navigator.mediaDevices.getUserMedia({ video : { facingMode: "user"}, audio:false })
-                .then(function (stream) {
-                video.srcObject = stream;
-                })
-                .catch(function (err0r) {
-                console.log("Something went wrong!");
+                navigator.mediaDevices.getUserMedia(camera).then(function (stream) {
+                    cameraView.srcObject = stream;
+                    })
+                    .catch(function (err) {
+                        console.log("Something went wrong!");
                 });
             }
+            
+            cameraOn();
             </script>
             
     </body>
