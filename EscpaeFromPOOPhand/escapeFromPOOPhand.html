@@ -1,93 +1,123 @@
 <!DOCTYPE html>
-    <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!--meta http-equiv="X-UA-Compatible" content="ie=edge"-->
-        <title>Escape From POOP hand</title>
-        <style>
-            html, body{
-                position: fixed;
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                height: 100%;
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Camera Web App</title>
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
 
-            }       
-            #header {
-                position: absolute;
-                z-index: 999;
-            }
-            
-            #cameraView, #cameraSensor{
-                position: fixed;
-                height: 100%;
-                width: 100%;
-                object-fit: fill;
-                transform: scaleX(-1);
-            }
+        #header{
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            z-index: 999;
+            color: white;
+            text-align: center;
+            transform: translate(-50%, -50%);
+        }
 
-            #referenceIMG {
-                position: fixed;
-                width: 100%;
-                object-fit: fill;
-                opacity: 0.5;
-            }
+        #header > p {
+            font-size: 0.9em;
+        }
 
-            #trigger{
-                width: 180px;
-                color: white;
-                background-color: black;
-                font-size: 16px;
-                border-radius: 30px;
-                border: none;
-                padding: 15px 20px;
-                text-align: center;
-                box-shadow: 0 5px 10px 0 rgba(0,0,0,0, 0.2);
-                position: fixed;
-                bottom: 30px;
-                left: calc(50% - 90px);
-            }
-        </style>
-    </head>
-    <body>
-        <div id="header">
-            
-            <h2>Escape From POOP hand 4</h2>
-            <input type="file" accept="image/*" id="importIMG" onchange="loadFile(this);">
-        </div>
+        #camera, #camera--view, #camera--sensor, #camera--output{
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
 
-        <canvas id="cameraSensor"></canvas>
-        <video autoplay="true" id="cameraView" width="100%" height="100%"></video>
-        <img id="referenceIMG" alt="">
+        #camera--view, #camera--sensor, #camera--output{
+            transform: scaleX(-1);
+            filter: FlipH;
+        }
+
+        #camera--trigger{
+            width: 180px;
+            color: white;
+            background-color: black;
+            font-size: 16px;
+            border-radius: 30px;
+            border: none;
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 5px 10px 0 rgba(0,0,0,0, 0.2);
+            position: fixed;
+            bottom: 30px;
+            left: calc(50% - 90px);
+        }
+
+        .taken {
+            height: 140px!important;
+            width: 220px!important;
+            border: solid 2px rgb(121, 200, 253);
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h3>Simple Web Camera</h3>
+        <p>버튼을 클릭 하세요.</p>
+    </div>
+    
+    <!-- main 태그는 문서의 주요 내용을 담는 태그이다. 한 문서에 한개 존재 해야 한다.
+        또한 article, aside, header, nav, footer등 요소의 하위에 사용해서는 안된다.
+    -->
+    <main id="camera">
         
-        <button id="trigger">Take Photo</button>
+        <canvas id="camera--sensor"></canvas>
 
-        <script>
-            // facingMode: {exact:"environment"} // 후면 카메라 부를때!
-            var camera = { video : { facingMode: "user"}, audio:false };
-            var cameraView = document.querySelector("#cameraView");
-            
-            function cameraOn() {
-                navigator.mediaDevices.getUserMedia(camera)
-                    .then(function (stream) {
-                        track = stream.getTracks()[0];
-                        cameraView.srcObject = stream;
-                    })
-                    .catch(function (err) {
-                        console.log("Something went wrong!");
-                });
-            }
+        <!-- 기기의 카메라에 접근하여 영상을 페이지에 재생한다. -->
+        <video id="camera--view" autoplay playsinline></video>
+        
+        <img src="//:0" alt="" id="camera--output">
 
-            function loadFile(input) {
-                var file = input.files[0];
-                var image = document.getElementById('referenceIMG');
-                image.src = URL.createObjectURL(file);
-            }
+        <button id="camera--trigger">사진촬영</button>
+
+    </main>
+
+
+    <script>
+
+        let constraints = { video: { facingMode: "user"}, audio: false};
+        const cameraView = document.querySelector("#camera--view");
+        const cameraOutput = document.querySelector("#camera--output");
+        const cameraSensor = document.querySelector("#camera--sensor");
+        const cameraTrigger = document.querySelector("#camera--trigger");
+
+
+        function cameraStart(){
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(function(stream){
+                    track = stream.getTracks()[0];
+                    cameraView.srcObject = stream;
+
+                })
+                .catch(function(error){
+                    console.error("카메라에 문제가 있습니다.", error);
+                })
+        }
+
+        //촬영 버튼 클릭 리스너
+        cameraTrigger.addEventListener("click", function(){
             
-            cameraOn();
-            </script>
-            
-    </body>
+            cameraSensor.width = cameraView.videoWidth; //640으로 정해져서 나오네?
+            cameraSensor.height = cameraView.videoHeight;
+            cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
+            cameraOutput.src = cameraSensor.toDataURL("image/webp");
+            cameraOutput.classList.add("taken");
+            console.log(cameraSensor.height);
+        });
+    
+        // 페이지가 로드되면 함수 실행
+        window.addEventListener("load", cameraStart, false);
+    </script>
+</body>
 </html>
