@@ -6,9 +6,19 @@
         <!--meta http-equiv="X-UA-Compatible" content="ie=edge"-->
         <title>Escape From POOP hand</title>
         <style>
-            body{
+            html, body{
                 position: fixed;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                
             }       
+
+            #header {
+                position: absolute;
+                z-index: 999;
+            }
             
             #cameraView {
                 position: fixed;
@@ -34,7 +44,11 @@
         </style>
     </head>
     <body>
-        <h2>Escape From POOP hand 1</h2>
+        <div id="header">
+            
+            <h2>Escape From POOP hand 2</h2>
+        </div>
+        
         <video autoplay="true" id="cameraView" width="100%" height="100%"></video>
         <button id="trigger">Take Photo</button>
 
