@@ -14,7 +14,6 @@
                 height: 100%;
 
             }       
-
             #header {
                 position: absolute;
                 z-index: 999;
@@ -26,6 +25,12 @@
                 width: 100%;
                 object-fit: cover;
                 transform: scaleX(-1);
+            }
+
+            #referenceIMG {
+                position: fixed;
+                width: 100%;
+                object-fit: fill;
             }
 
             #trigger{
@@ -48,10 +53,13 @@
         <div id="header">
             
             <h2>Escape From POOP hand 3</h2>
+            <input type="file" accept="image/*" capture="camera" id="importIMG" onchange="loadFile(this);">
         </div>
 
         <canvas id="cameraSensor"></canvas>
         <video autoplay="true" id="cameraView" width="100%" height="100%"></video>
+        <img id="referenceIMG" alt="">
+        
         <button id="trigger">Take Photo</button>
 
         <script>
@@ -68,6 +76,12 @@
                     .catch(function (err) {
                         console.log("Something went wrong!");
                 });
+            }
+
+            function loadFile(input) {
+                var file = input.files[0];
+                var image = document.getElementById('referenceIMG');
+                image.src = URL.createObjectURL(file);
             }
             
             cameraOn();
