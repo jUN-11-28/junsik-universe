@@ -1,16 +1,97 @@
-<html>
+<!DOCTYPE html>
+    <html lang="ko">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>TEST</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!--meta http-equiv="X-UA-Compatible" content="ie=edge"-->
+        <title>Escape From POOP hand</title>
         <style>
-            #toggle {
-                margin-left: 10%;
+            html, body{
+                position: fixed;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+
+            }       
+            #header {
+                position: absolute;
+                z-index: 999;
+            }
+            
+            #cameraView, #cameraSensor{
+                position: fixed;
+                height: 100%;
+                width: 100%;
+                object-fit: fill;
+                transform: scaleX(-1);
+            }
+
+            #referenceIMG {
+                position: fixed;
+                width: 100%;
+                object-fit: fill;
+                opacity: 0.5;
+            }
+
+            #trigger{
+                width: 180px;
+                color: white;
+                background-color: black;
+                font-size: 16px;
+                border-radius: 30px;
+                border: none;
+                padding: 15px 20px;
+                text-align: center;
+                box-shadow: 0 5px 10px 0 rgba(0,0,0,0, 0.2);
+                position: fixed;
+                bottom: 30px;
+                left: calc(50% - 90px);
             }
         </style>
     </head>
-    
     <body>
-        <input type="file" accept="image/*" capture="camera">
+        <div id="header">
+            
+            <h2>Escape From POOP hand 4</h2>
+            <input type="file" accept="image/*" id="importIMG" onchange="loadFile(this);">
+        </div>
+
+        <canvas id="cameraSensor"></canvas>
+        <video autoplay="true" id="cameraView" width="100%" height="100%"></video>
+        <img id="referenceIMG" alt="">
+        
+        <button id="trigger">Take Photo</button>
+
+        <script>
+            // facingMode: {exact:"environment"} // 후면 카메라 부를때!
+            var camera = { video : { facingMode: "user"}, audio:false };
+            var cameraView = document.querySelector("#cameraView");
+            
+            function cameraOn() {
+                navigator.mediaDevices.getUserMedia(camera)
+                    .then(function (stream) {
+                        track = stream.getTracks()[0];
+                        cameraView.srcObject = stream;
+                    })
+                    .catch(function (err) {
+                        console.log("Something went wrong!");
+                });
+            }
+
+            function loadFile(input) {
+                var file = input.files[0];
+                var image = document.getElementById('referenceIMG');
+                image.src = URL.createObjectURL(file);
+            }
+
+            function capture() {
+                
+            }
+            
+            cameraOn();
+            </script>
+            
     </body>
 </html>
