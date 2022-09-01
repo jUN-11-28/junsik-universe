@@ -6,10 +6,18 @@
         <!--meta http-equiv="X-UA-Compatible" content="ie=edge"-->
         <title>Escape From POOP hand</title>
         <style>
-
+            body{
+                position: fixed;
+            }       
             
+            #cameraView {
+                position: fixed;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
 
-            #camera--trigger{
+            #trigger{
                 width: 180px;
                 color: white;
                 background-color: black;
@@ -28,7 +36,7 @@
     <body>
         <h2>Escape From POOP hand 1</h2>
         <video autoplay="true" id="cameraView" width="100%" height="100%"></video>
-        <button id="camera--trigger">Take Photo</button>
+        <button id="trigger">Take Photo</button>
 
         <script>
             // facingMode: {exact:"environment"} // 후면 카메라 부를때!
@@ -36,8 +44,10 @@
             var cameraView = document.querySelector("#cameraView");
             
             function cameraOn() {
-                navigator.mediaDevices.getUserMedia(camera).then(function (stream) {
-                    cameraView.srcObject = stream;
+                navigator.mediaDevices.getUserMedia(camera)
+                    .then(function (stream) {
+                        track = stream.getTracks()[0];
+                        cameraView.srcObject = stream;
                     })
                     .catch(function (err) {
                         console.log("Something went wrong!");
