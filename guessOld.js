@@ -21,7 +21,7 @@ var title = "junsik forever";
 function getMusicInfo() {
   let random = Math.floor((Math.random() * (50 - 0) + 0));
 
-  fetch("http://junsik-universe.com/music.json")
+  fetch("http://junsik-universe.com/guessSrc/IU.json")
   .then(function (response) {
     return response.json();
   })

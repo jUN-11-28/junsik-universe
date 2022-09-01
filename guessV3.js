@@ -12,6 +12,7 @@ var targetSeconds = document.getElementById("seconds");
 var targetProfile = document.getElementById("profile");
 var targetTheme = document.getElementById("theme");
 var targetChooseTheme = document.getElementById("chooseTheme");
+var targetPlayer = document.getElementById("player");
 targetAnswer.style.visibility = "hidden";
 targetAnswerBtn.style.visibility = "hidden";
 targetAlbumArt.style.visibility = "hidden";
@@ -24,14 +25,10 @@ targetTheme.style.visibility = "hidden";
 var audio = new Audio('clickEffect.m4a');
 var seconds = 3;
 
-//비동기방식으로 아이프레임 플레이어 API 코드를 불러옵니다. 
-var tag = document.createElement('script'); 
-tag.src = "https://www.youtube.com/player_api"; 
-var firstScriptTag = document.getElementsByTagName('script')[0]; 
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
 
 // 노래관련 변수들
-var id = "gE9vcSbENwo"; // 인트로 영상 주소임
+var id; // 인트로 영상 주소임
 var title = "junsik forever";
 var numOfSongs = 0;
 var dupChecker = new Array(100);
@@ -106,6 +103,7 @@ function prev() {
 
 var themeCnt = 0;
 function chooseTheme() {
+  connect = 1;
   audio.play();
   if (themeCnt == 0) {
     targetTheme.style.visibility = "visible";
@@ -118,10 +116,10 @@ function chooseTheme() {
     changeVideo(id);
     themeCnt = 1;
   } else {
+    player.stopVideo();
     targetTheme.style.visibility = "hidden";
     targetChooseTheme.src = themes[theme] + "btn.png";
     targetPlayBtn.style.visibility = "visible";
-    getMusicInfo();
     songCnt = 0;
     for (var i = 1; i < 100; i++) {
       dupChecker[i] = 0;
@@ -143,7 +141,7 @@ function showAnswer() {
     setTimeout(function() {
       targetAnswer.style.visibility = "visible";
       targetAlbumArt.style.visibility = "visible";
-      getMusicInfo();
+      //getMusicInfo();
     }, 500);
   count = 0;
 }
@@ -157,13 +155,20 @@ function playMusic() {
   setBtnCnt = 0;
   done = false;
   if (connect == 0) {
+    id = "gE9vcSbENwo";
     targetPlayBtn.style.visibility = "hidden";
+    //비동기방식으로 아이프레임 플레이어 API 코드를 불러옵니다. 
+    var tag = document.createElement('script'); 
+    tag.src = "https://www.youtube.com/player_api"; 
+    var firstScriptTag = document.getElementsByTagName('script')[0]; 
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     playIntro();
     getMusicInfo();
   } else {
     if (count == 0) {
         targetAlbumArt.style.visibility = "hidden";
         targetAnswer.style.visibility = "hidden";
+        getMusicInfo();
         changeVideo(id);
     }
     musicOn();
@@ -214,9 +219,10 @@ function onYouTubePlayerAPIReady() {
     //height: '315',
     width: '100%',
     videoId: id,
-    autoplay: 0,
+    autoplay: 1,
     controls: 0,
     modestbranding:1,
+    autoplay: 1,
     playerVars: {
       'playsinline': 1
     }, 
@@ -228,19 +234,19 @@ function onYouTubePlayerAPIReady() {
 }; 
 
 function onPlayerReady (event) {
-  event.target.stopVideo();
+  event.target.playVideo();
 }
 
 var done = false;
 function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done && connect == 1) {
+  if (event.data == YT.PlayerState.PLAYING && !done && connect == 0) {
     setTimeout(function() {
       stopVideo();
       getMusicInfo();
       targetChooseTheme.style.visibility = "visible";
-      targetVideo.style.visibility = "hidden";
+      //targetVideo.style.visibility = "hidden";
 
-    } , 4500);
+    } , 4800);
     done = true;
   } else if (event.data == YT.PlayerState.PLAYING && !done && connect > 1) {
     setTimeout(function() {
