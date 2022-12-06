@@ -1,97 +1,19 @@
 <!DOCTYPE html>
-    <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Escape From POOP hand</title>
-        <style>
-            html, body{
-                position: fixed;
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                height: 100%;
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Camera Web App</title>
+</head>
+<body>
+    <device type="media" onchange="update(this.data)"></device>
+<video autoplay></video>
+<script>
+    function update(stream) {
+    document.querySelector('video').src = stream.url;
+    }
+</script>
 
-            }       
-            #header {
-                position: absolute;
-                z-index: 999;
-            }
-            
-            #cameraView, #cameraSensor{
-                position: fixed;
-                height: 100%;
-                width: 100%;
-                object-fit: fill;
-                transform: scaleX(-1);
-            }
-
-            #referenceIMG {
-                position: fixed;
-                width: 100%;
-                object-fit: fill;
-                opacity: 0.5;
-            }
-
-            #trigger{
-                z-index: 999;
-                position: fixed;
-                bottom: 30px;
-                left: calc(50% - 90px);
-            }
-        </style>
-    </head>
-    <body>
-        <div id="header">
-            
-            <h2>Escape From POOP hand 4</h2>
-            <input type="file" accept="image/*" id="importIMG" onchange="loadFile(this);">
-        </div>
-
-        <canvas id="cameraSensor"></canvas>
-        <video autoplay="true" id="cameraView" width="100%" height="100%"></video>
-        <img id="referenceIMG" alt="">
-        
-        
-        <input type="button" id="trigger" value="Take Photo" onclick="capture();" >
-
-
-        <script>
-            // facingMode: {exact:"environment"} // 후면 카메라 부를때!
-            var camera = { video : { facingMode: "user"}, audio:false };
-            var cameraView = document.querySelector("#cameraView");
-            
-            function cameraOn() {
-                navigator.mediaDevices.getUserMedia(camera)
-                    .then(function (stream) {
-                        track = stream.getTracks()[0];
-                        cameraView.srcObject = stream;
-                    })
-                    .catch(function (err) {
-                        console.log("Something went wrong!");
-                });
-            }
-            var image = document.getElementById('referenceIMG');
-            function loadFile(input) {
-                var file = input.files[0];
-                
-                image.src = URL.createObjectURL(file);
-            }
-
-            var cameraSensor = document.querySelector("#cameraSensor");
-
-            function capture() {
-                cameraSensor.width = cameraView.videoWidth; //640으로 정해져서 나오네?
-                cameraSensor.height = cameraView.videoHeight;
-                cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
-                image.src = cameraSensor.toDataURL("image/webp");
-                //cameraOutput.classList.add("taken");
-                console.log(cameraSensor.height);
-            }
-            
-            cameraOn();
-            </script>
-            
-    </body>
+</body>
 </html>
