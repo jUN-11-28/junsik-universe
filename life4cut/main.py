@@ -2,7 +2,7 @@ import cv2
 from PIL import Image
 from datetime import datetime
 
-webcam = cv2.VideoCapture(1) # 여기서 파라미터는 몇번째 웹캠 말하는거라고 함
+webcam = cv2.VideoCapture(0) # 여기서 파라미터는 몇번째 웹캠 말하는거라고 함
 # path = '/Users/junyoungjoun/Documents/GitHub/junsik-universe/life4cut'
 
 # vid_cod = cv2.VideoWriter_fourcc(*'DIVX')
@@ -55,14 +55,17 @@ for i in range(0, 4):
     im = Image.open('life4cut/photos/crop' + str(i) + '.jpg')
     im = im.resize((550, 370), Image.ANTIALIAS)
     area = (positionX, positionY, positionX + im.width, positionY + im.height)
-    photoFrame.paste(im, area)
+    canvas.paste(im, area)
     positionY += growth
 
 #canvas.paste(photoFrame, (0, 0, photoFrame.width, photoFrame.height))
-photoFrame = photoFrame.convert('RGB')
-photoFrame.show()
-photoFrame.save('life4cut/results/' + str(datetime.today()) + '.jpg')
-
+photoFrame = photoFrame.convert('RGBA')
+canvas = Image.alpha_composite(canvas, photoFrame)
+canvas = canvas.convert('RGB')
+canvas.show()
+canvas.save('life4cut/results/' + str(datetime.today()) + '.jpg')
 
 im.close()
 im2.close()
+canvas.close()
+photoFrame.close()
