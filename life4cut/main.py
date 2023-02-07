@@ -1,4 +1,5 @@
 # from tkinter import *
+# pip -> opencv, pillow
 import cv2
 from PIL import Image, ImageFont, ImageDraw
 from datetime import datetime
@@ -28,11 +29,10 @@ while webcam.isOpened():
         cv2.imshow("life4cut", inversed)
         # output.write(inversed)
     key = cv2.waitKey(1)
-    if key == 10: # 10 means return or enter
+    if key == 13: # 13 means return or enter
         print("capture")
         cv2.imwrite('life4cut/photos/test'+str(i)+'.jpg', frame)
         i += 1
-
     if key == ord('q'):
         break
 
