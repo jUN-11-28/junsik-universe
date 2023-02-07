@@ -1,4 +1,4 @@
-from tkinter import *
+# from tkinter import *
 import cv2
 from PIL import Image, ImageFont, ImageDraw
 from datetime import datetime
@@ -27,13 +27,13 @@ while webcam.isOpened():
         inversed = cv2.flip(frame, 1)
         cv2.imshow("life4cut", inversed)
         # output.write(inversed)
-
-    if cv2.waitKey(1) == ord('c'):
+    key = cv2.waitKey(1)
+    if key == 10: # 10 means return or enter
         print("capture")
         cv2.imwrite('life4cut/photos/test'+str(i)+'.jpg', frame)
         i += 1
 
-    if cv2.waitKey(1) == ord('q'):
+    if key == ord('q'):
         break
 
     if i == 4 :
@@ -52,7 +52,7 @@ for i in range(0, 4):
 print("CROP - COMPLETE")
 
 canvas = Image.open('life4cut/frames/canvas.png')
-photoFrame = Image.open('life4cut/frames/frame3.png')
+photoFrame = Image.open('life4cut/frames/frame1.png') # frame
 
 positionX = 25
 positionY = 17
