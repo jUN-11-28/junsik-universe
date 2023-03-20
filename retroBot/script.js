@@ -159,12 +159,13 @@ async function processInput() {
     prefix = '';
     promptMsg = '생각중...';
     addMessage('기본 채팅모드로 변경합니다!');
+    data.messages.push({'role' : 'assistant', 'content': '기본 채팅모드로 변경합니다!'});
     isUser = false;
     return;
   } else if (message === '/번역') {
-    prefix = '번역해줘: ';
+    prefix = '번역만 해줘: ';
     promptMsg = '번역중...';
-    addMessage(message);
+    addMessage('번역모드로 변경합니다!');
     isUser = false;
     return;
   } else if (message === '/') {
@@ -182,7 +183,7 @@ async function processInput() {
     isUser = false;
     prefix = 'check grammar with explanation:\n';
     promptMsg = '문법 검사중...';
-    addMessage(message);
+    addMessage('문법모드로 변경합니다!');
     return;
   } else if (message === '/speaking') {
     isUser = false;
