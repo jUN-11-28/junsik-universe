@@ -1,0 +1,136 @@
+/* Neo둥근모 */
+@import url('//cdn.jsdelivr.net/gh/neodgm/neodgm-webfont@1.530/neodgm/style.css');
+
+/* Neo둥근모 Code */
+@import url('//cdn.jsdelivr.net/gh/neodgm/neodgm-webfont@1.530/neodgm_code/style.css');
+
+/* score dream*/
+@font-face {
+  font-family: 'S-CoreDream-3Light';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --font: 'S-CoreDream-3Light'
+  /* 'NeoDunggeunmo' */
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    background-color: #000;
+    font-family: var(--font);
+    letter-spacing: 0.3em;
+    line-height: 1.5;
+  }
+  
+  /* 챗박스 전체 스타일 */
+  .chatbox {
+    max-width: 90%;
+    margin: 0 auto;
+    background-color: #000000;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    font-family: var(--font); 
+    font-size: 24px;
+    color: #222;
+    height: 100%;
+  }
+  
+  /* 챗로그 스타일 */
+  .chatlog {
+    padding: 20px;
+    background-color: #000;
+    color: #9aff9a;
+    height: calc(100% - 80px - 24px);
+    overflow-y: auto;
+  }
+
+  .log-entry-text-user {
+    color: #ffffffe4;
+  }
+
+    /* 챗로그 스타일 */
+    .timestamp {
+        color: #9aff9a9f;
+        font-size: 18px;
+      }
+
+      .timestamp-user {
+        color: #ffffff9f;
+        font-size: 18px;
+      }
+  
+  /* 입력박스 스타일 */
+  /* .input-box {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  } */
+  pre {
+    font-family: var(--font);
+    white-space: pre-wrap;
+  }
+  textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #000;
+    color: #fff;
+    font-family: var(--font);
+    font-size: 24px;
+    width: 100%;
+    margin-right: 10px;
+    text-indent: 10px;
+    outline: none;
+    letter-spacing: 0.3em;
+    line-height: 1.5;
+  }
+
+    /* 시계 스타일 */
+.clock {
+    text-align: right;
+    padding-right: 10px;
+    font-size: 20px;
+    color: #fff;
+  }
+  
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 0px;
+
+  }
+
+  ::-webkit-scrollbar-button {
+    background-color: #000000;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #000000;
+  }
+  
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #9aff9a;
+  }
+  
+  /* ::-webkit-scrollbar-corner {
+    background-color: #F5F5F5;
+  }
+   */
+
+  ::-webkit-scrollbar {
+    width: 30px;
+  }
+  
+  
