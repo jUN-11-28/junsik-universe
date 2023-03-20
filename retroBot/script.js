@@ -109,6 +109,9 @@ function addMessage(message) {
   logEntry.appendChild(logEntryText);
   logEntry.appendChild(logEntryTimestamp);
   chatLog.appendChild(logEntry);
+
+  // 스크롤 맨 아래로 내리기
+    chatLog.scrollTop = chatLog.scrollHeight;
 }
 
 // 입력받은 메시지 처리하는 함수
