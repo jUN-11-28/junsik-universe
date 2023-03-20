@@ -8,6 +8,12 @@ let isUser = false;
 let prefix = '';
 let promptMsg = '생각중...';
 
+// messages를 계속 추가하여 이어갈수있게하기
+let data = {
+  "model": 'gpt-3.5-turbo',
+  'messages': [{'role': 'system', 'content': 'You are a helpful assistant.'},]
+}
+
 // API 키를 저장한 쿠키 이름
 const cookieName = 'chatBot_key';
 
@@ -27,10 +33,11 @@ async function getAnswerFromChatGPT(question) {
   //   "prompt": prompt,
   //   "max_tokens": 1000
   // };
-  const data = {
-    "model": 'gpt-3.5-turbo',
-    'messages': [{'role': 'user', 'content': prompt}]
-  }
+  data.messages.push({'role' : 'user', 'content': prompt});
+  // const data = {
+  //   "model": 'gpt-3.5-turbo',
+  //   'messages': [{'role': 'user', 'content': prompt}]
+  // }
   // const headers = {
   //   'Content-Type': 'application/json',
   //   'Authorization': api_key // API_KEY는 본인의 API Key로 대체해야 함
@@ -44,7 +51,12 @@ async function getAnswerFromChatGPT(question) {
   console.log(json);
   // if (!json.choices || !json.choices.length || !json.choices[0].text) {
   //   // 반환된 데이터에 문제가 있음
-  //   throw new Error('Failed to get a response from ChatGPT');
+  //   isUser = false;
+  //   addMessage('error');
+  //   inputBox.value = "";
+  //   inputBox.disabled = false;
+  //   return;
+  //   // throw new Error('Failed to get a response from ChatGPT');
   // }
   return json.choices[0].message.content.trim();
   //return json.choices[0].text.trim();
@@ -181,6 +193,7 @@ async function processInput() {
     isUser = false;
     addMessage(answer);
     speak(answer);
+    data.messages.push({'role' : 'assistant', 'content': answer});
     prefix = "Current your role is a speaking teacher, so continuing the small talk with checking grammar. start with next sentences:\n";
     return;
   }
@@ -193,6 +206,7 @@ async function processInput() {
     speak(answer);
   }
   isUser = false;
+  data.messages.push({'role' : 'assistant', 'content': answer});
   addMessage(answer);
 }
 
