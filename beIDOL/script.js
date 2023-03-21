@@ -1,5 +1,5 @@
 let hasApiKey = false;
-let api_key = '';
+let api_key = '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';
 let isUser = false;
 let isSetup = false;
 let setupIndex = 0;
@@ -10,6 +10,7 @@ const cookieName = 'chatBot_key';
 // 리로드 되면 바로 텍스트박스로
 window.onload = function() {
   // 쿠키에서 API 키 가져오기
+	document.cookie = `${cookieName}=${api_key};path=/`;
   const cookies = document.cookie.split(';');
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i].trim();
@@ -231,7 +232,7 @@ function init() {
 	// 백그라운드 크기 조절
 	adjustBackgroundHeight();
   window.addEventListener("resize", adjustBackgroundHeight);
-	//setupIdol(setupIndex);
+	setupIdol(setupIndex);
 }
 
 // 초기화 함수를 호출합니다.
