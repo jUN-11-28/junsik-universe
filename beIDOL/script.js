@@ -87,7 +87,7 @@ async function sendUserInput() {
 		isNews = true;
 	}
 	if (isNews) {
-		prefix = '실제 기사처럼 여러 기사 작성해줘: \n형식 [기사회사] --- 내용:\n';
+		prefix = '실제 기사처럼 여러 기사 작성해줘. 기사형식 [기사회사] --- 내용:\n';
 		setTimeout(addBotBubble('기사봇 - 특종이 뜬거 같아요! 곧 기사가 뜹니다!'), 1000);
 	}
 	const answer = await getAnswerFromChatGPT(prefix + userInput);
