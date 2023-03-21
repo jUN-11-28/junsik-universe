@@ -82,13 +82,13 @@ async function sendUserInput() {
 		setupIdol();
 		return;
 	}
-	const randomNum = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
+	const randomNum = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
 	if (randomNum === 3) {
 		isNews = true;
 	}
 	if (isNews) {
 		prefix = '실제 기사처럼 여러 기사 작성해줘: \n';
-		isNews = false;
+		addBotBubble('기사봇 - 특종이 뜬거 같아요! 곧 기사가 뜹니다!');
 	}
 	const answer = await getAnswerFromChatGPT(prefix + userInput);
 	data.messages.push({'role' : 'assistant', 'content': answer});
@@ -96,9 +96,14 @@ async function sendUserInput() {
 		document.querySelector("#user-input").value = '';
 		//document.querySelector("#user-input").focus();
 	}, 100);
-	seperateAnswer(answer);
+	if (!isNews) {
+		seperateAnswer(answer);
+		isNews = false;
+	} else {
+		addBotBubble(answer);
+	}
+	
 	prefix = '짧은댓글 여러개 달아줘: \n';
-	//addBotBubble(answer);
 }
 
 async function setupIdol() {
@@ -201,22 +206,38 @@ function addBotBubble(userInput) {
 
 	// 메시지를 추가할 요소를 생성합니다.
 	const messageTime = document.createElement("p");
+	const botProfileImage = document.createElement("div");
+	const botProfileName = document.createElement("p");
 	const messageContainer = document.createElement("div");
 	const messageBubble = document.createElement("div");
 	const messageText = document.createElement("pre");
+	const textContainer = document.createElement("div");
 
 	// 요소에 클래스를 추가합니다.
 	messageContainer.classList.add("bot-message-container");
+	botProfileImage.classList.add("bot-profile-image");
+	botProfileName.classList.add("bot-profile-name");
 	messageBubble.classList.add("bot-message-bubble");
 	messageText.classList.add("message-text");
 	messageTime.classList.add("message-time");
+	textContainer.classList.add("bot-text");
 
 	// 요소에 사용자가 입력한 메시지와 현재 시간을 추가합니다.
-	messageText.textContent = userInput;
+	if (userInput.includes('-')) {
+		botProfileName.textContent = userInput.split('-')[0];
+		messageText.textContent = userInput.split('-')[1];
+	} else {
+		// handle case where userInput does not contain '-'
+		botProfileName.textContent = 'beIDOL';
+		messageText.textContent = userInput;
+	}
 	messageTime.textContent = currentTime;
 
 	// 요소를 채팅창에 추가합니다.
-	messageContainer.appendChild(messageBubble);
+	messageContainer.appendChild(botProfileImage);
+	messageContainer.appendChild(textContainer);
+	textContainer.appendChild(botProfileName);
+	textContainer.appendChild(messageBubble);
 	messageBubble.appendChild(messageText);
 	messageContainer.appendChild(messageTime);
 	chatHistory.appendChild(messageContainer);
@@ -258,7 +279,7 @@ function adjustBackgroundHeight() {
   const windowHeight = window.innerHeight;
 
 	// 채팅창의 높이를 계산합니다.
-  const backgroundHeight = windowHeight - userInputContainerHeight - 15;
+  const backgroundHeight = windowHeight - userInputContainerHeight - 10;
 
 	//// 백그라운드 높이를 적용합니다.
   // background.style.height = `${windowHeight - userInputContainerHeight - 15}px`;
