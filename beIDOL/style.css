@@ -38,7 +38,7 @@ pre {
   }
   
   
-  .message-container {
+  .user-message-container {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 10px;
@@ -51,6 +51,21 @@ pre {
     max-width: 70%;
     color: white;
     text-align: right;
+  }
+
+  .bot-message-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .bot-message-bubble {
+    background-color: #e2e2e2;
+    border-radius: 20px;
+    padding: 10px;
+    max-width: 70%;
+    color: black;
+    text-align: left;
   }
   
   .bot-message-bubble {

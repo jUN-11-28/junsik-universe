@@ -1,16 +1,98 @@
+let hasApiKey = false;
+let api_key = '';
+let isUser = false;
+let isSetup = false;
+let setupIndex = 0;
+
+// API 키를 저장한 쿠키 이름
+const cookieName = 'chatBot_key';
+
+// 리로드 되면 바로 텍스트박스로
+window.onload = function() {
+  // 쿠키에서 API 키 가져오기
+  const cookies = document.cookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+    if (cookie.startsWith(`${cookieName}=`)) {
+      api_key = cookie.substring(`${cookieName}=`.length, cookie.length);
+      break;
+    }
+  }
+
+
+	// API 키가 없으면 사용자에게 다시 입력 받도록 알림
+	if (api_key === '') {
+		addBotBubble("api 키를 입력하세요");
+		hasApiKey = false;
+	} else {
+		hasApiKey = true;
+	}
+};
+
+// message 계속 이어가게
+let data = {
+  "model": 'gpt-3.5-turbo',
+  'messages': [{'role': 'system', 'content': 'You are a helpful assistant.'},]
+}
+
+// ChatGPT API 요청 함수
+async function getAnswerFromChatGPT(question) {
+  const url = 'https://api.openai.com/v1/chat/completions'
+  const prompt = question + '\n';
+  const headers = {
+    "Authorization": "Bearer " + api_key,
+    "Content-Type":"application/json"
+  }
+  data.messages.push({'role' : 'user', 'content': prompt});
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(data)
+  });
+  const json = await response.json();
+  console.log(json);
+  return json.choices[0].message.content.trim();
+}
+
+
 // HTML 코드에서 #chat-history 요소를 선택합니다.
 const chatHistory = document.querySelector("#chat-history");
 
 // Send 버튼을 클릭할 때 호출되는 함수입니다.
-function sendUserInput() {
+async function sendUserInput() {
   // 사용자가 입력한 메시지를 가져옵니다.
   const userInput = document.querySelector("#user-input").value;
 
   if (userInput === '') {
     return;
   }
+	if (!hasApiKey) {
+		api_key = userInput;
+  	document.cookie = `${cookieName}=${api_key};path=/`;
+  	addBotBubble('api key가 입력되었습니다.');
+		hasApiKey = true;
+		return;
+	}
+
 	addUserBubble(userInput);
-  document.querySelector("#user-input").focus();
+	if (!isSetup) {
+		setupIdol(setupIndex);
+		setupIndex = setupIndex + 1;
+		return;
+	}
+	const answer = await getAnswerFromChatGPT(userInput);
+	data.messages.push({'role' : 'assistant', 'content': answer});
+	setTimeout(function() {
+		document.querySelector("#user-input").value = '';
+		document.querySelector("#user-input").focus();
+	}, 100);
+	addBotBubble(answer);
+}
+
+function setupIdol(i) {
+	if (i === 0) {
+		addBotBubble("활동명을 알려주세요");
+	}
 }
 
 function addUserBubble(userInput) {
@@ -25,7 +107,7 @@ function addUserBubble(userInput) {
 
 	// 요소에 클래스를 추가합니다.
 	messageTime.classList.add("message-time");
-	messageContainer.classList.add("message-container");
+	messageContainer.classList.add("user-message-container");
 	messageBubble.classList.add("user-message-bubble");
 	messageText.classList.add("message-text");
 
@@ -37,6 +119,41 @@ function addUserBubble(userInput) {
 	messageContainer.appendChild(messageTime);
 	messageContainer.appendChild(messageBubble);
 	messageBubble.appendChild(messageText);
+	chatHistory.appendChild(messageContainer);
+
+	// 입력창을 초기화합니다.
+	document.querySelector("#user-input").value = null;
+	document.querySelector("#user-input").value = '';
+
+	// 입력창의 높이를 자동으로 조절합니다.
+	adjustUserInputHeight();
+	chatHistory.scrollTop = chatHistory.scrollHeight;
+}
+
+function addBotBubble(userInput) {
+	// 현재 시간을 구합니다.
+	const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+	// 메시지를 추가할 요소를 생성합니다.
+	const messageTime = document.createElement("p");
+	const messageContainer = document.createElement("div");
+	const messageBubble = document.createElement("div");
+	const messageText = document.createElement("pre");
+
+	// 요소에 클래스를 추가합니다.
+	messageContainer.classList.add("bot-message-container");
+	messageBubble.classList.add("bot-message-bubble");
+	messageText.classList.add("message-text");
+	messageTime.classList.add("message-time");
+
+	// 요소에 사용자가 입력한 메시지와 현재 시간을 추가합니다.
+	messageText.textContent = userInput;
+	messageTime.textContent = currentTime;
+
+	// 요소를 채팅창에 추가합니다.
+	messageContainer.appendChild(messageBubble);
+	messageBubble.appendChild(messageText);
+	messageContainer.appendChild(messageTime);
 	chatHistory.appendChild(messageContainer);
 
 	// 입력창을 초기화합니다.
@@ -114,6 +231,7 @@ function init() {
 	// 백그라운드 크기 조절
 	adjustBackgroundHeight();
   window.addEventListener("resize", adjustBackgroundHeight);
+	//setupIdol(setupIndex);
 }
 
 // 초기화 함수를 호출합니다.
