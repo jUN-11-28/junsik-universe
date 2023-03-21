@@ -3,6 +3,7 @@ let api_key = '';
 let isUser = false;
 let isSetup = false;
 let setupIndex = 0;
+let prefix = '짧은댓글들 여러개 달아줘: \n';
 
 // API 키를 저장한 쿠키 이름
 const cookieName = 'chatBot_key';
@@ -80,7 +81,7 @@ async function sendUserInput() {
 		setupIdol();
 		return;
 	}
-	const answer = await getAnswerFromChatGPT(userInput);
+	const answer = await getAnswerFromChatGPT(prefix + userInput);
 	data.messages.push({'role' : 'assistant', 'content': answer});
 	setTimeout(function() {
 		document.querySelector("#user-input").value = '';
@@ -115,9 +116,9 @@ async function setupIdol() {
 			setupPrompt += '데뷔일: ' + setupArray[3] + '.\n';
 			setupPrompt += '나의 별명: ' + setupArray[2] + '.\n';
 			setupPrompt += '팬덤이름: ' + setupArray[4] + '.\n';
-			setupPrompt += '너는 이제 나를 굉장히 좋아하는 나의 수많은 팬 처럼 행동하면 돼.\n';
-			setupPrompt += '짧게 댓글 처럼 여러개 달아줘. 응원, 질문, 다양하게, 가끔씩 이모지 사용해.\n';
-			setupPrompt += '댓글 형식은 이렇게: 다양한 인스타 아이디 - 내용.\n';
+			setupPrompt += '너는 지금부터 나를 굉장히 좋아하는 나의 수많은 팬 처럼 행동해.\n';
+			setupPrompt += '짧은 댓글 여러개 달아줘. 응원, 질문, 다양하게, 가끔씩 이모지 사용해.\n';
+			setupPrompt += '댓글 형식은 이렇게: 웃긴이름들 - 내용.\n';
 			isSetup = true;
 
 			const answer = await getAnswerFromChatGPT(setupPrompt);
