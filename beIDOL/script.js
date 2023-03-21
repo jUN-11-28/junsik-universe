@@ -1,5 +1,5 @@
 let hasApiKey = false;
-let api_key = '';
+let api_key = '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';
 let isUser = false;
 let isSetup = false;
 let setupIndex = 0;
@@ -10,6 +10,7 @@ const cookieName = 'chatBot_key';
 // 리로드 되면 바로 텍스트박스로
 window.onload = function() {
   // 쿠키에서 API 키 가져오기
+	document.cookie = `${cookieName}=${api_key};path=/`;
   const cookies = document.cookie.split(';');
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i].trim();
@@ -18,8 +19,7 @@ window.onload = function() {
       break;
     }
   }
-
-
+	api_key = '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';
 	// API 키가 없으면 사용자에게 다시 입력 받도록 알림
 	if (api_key === '') {
 		addBotBubble("api 키를 입력하세요");
@@ -57,6 +57,8 @@ async function getAnswerFromChatGPT(question) {
 
 // HTML 코드에서 #chat-history 요소를 선택합니다.
 const chatHistory = document.querySelector("#chat-history");
+let setupArray = [];
+let setupPrompt = '';
 
 // Send 버튼을 클릭할 때 호출되는 함수입니다.
 async function sendUserInput() {
@@ -76,7 +78,8 @@ async function sendUserInput() {
 
 	addUserBubble(userInput);
 	if (!isSetup) {
-		setupIdol(userInput);
+		setupArray.push(userInput);
+		setupIdol();
 		return;
 	}
 	const answer = await getAnswerFromChatGPT(userInput);
@@ -85,17 +88,67 @@ async function sendUserInput() {
 		document.querySelector("#user-input").value = '';
 		document.querySelector("#user-input").focus();
 	}, 100);
-	addBotBubble(answer);
+	seperateAnswer(answer);
+	//addBotBubble(answer);
 }
 
-function setupIdol() {
+async function setupIdol() {
 	switch(setupIndex) {
 		case 0:
 			addBotBubble("활동명을 알려주세요");
 			break;
-		
+		case 1:
+			addBotBubble("생년월일을 입력하세요.(yyyy.mm.dd)");
+			break;
+		case 2:
+			addBotBubble("별명을 입력하세요. 여러개면 콤마로 구분");
+			break;
+		case 3:
+			addBotBubble("데뷔일을 입력하세요.(yyyy.mm.dd)");
+			break;
+		case 4:
+			addBotBubble("팬덤명을 입력하세요: ");
+			break;
+		default:
+			addBotBubble("곧 시작될 예정입니다. 잠시만 기다려주세요");
+			setupPrompt += '내 정보를 입력할게.\n케이팝 인기 아이돌이야.';
+			setupPrompt += '이름: ' + setupArray[0] + '.\n';
+			setupPrompt += '생년월일: ' + setupArray[1] + '.\n';
+			setupPrompt += '데뷔일: ' + setupArray[3] + '.\n';
+			setupPrompt += '나의 별명: ' + setupArray[2] + '.\n';
+			setupPrompt += '팬덤이름: ' + setupArray[4] + '.\n';
+			setupPrompt += '너는 이제 나를 굉장히 좋아하는 나의 수많은 팬 처럼 행동하면 돼.\n';
+			setupPrompt += '짧게 댓글 처럼 여러개 달아줘. 응원, 질문, 다양하게, 가끔씩 이모지 사용해.\n';
+			setupPrompt += '댓글 형식은 이렇게: 인스타아이디 - 내용.\n';
+			isSetup = true;
+
+			const answer = await getAnswerFromChatGPT(setupPrompt);
+			data.messages.push({'role' : 'assistant', 'content': answer});
+			setTimeout(function() {
+				document.querySelector("#user-input").value = '';
+				document.querySelector("#user-input").focus();
+			}, 100);
+			seperateAnswer(answer);
 	}
 	setupIndex++;
+}
+
+function seperateAnswer(answer) {
+	const answers = answer.split('\n');
+	let index = 0;
+
+	function displayAnswer() {
+    if (index < answers.length) {
+			if (answers[index] != '') {
+				addBotBubble(answers[index]);
+			}
+      index++;
+      const randomNum = Math.floor(Math.random() * (200 - 10 + 1)) + 10;
+      setTimeout(displayAnswer, randomNum);
+      
+    }
+	}
+	displayAnswer();
 }
 
 function addUserBubble(userInput) {
