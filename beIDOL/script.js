@@ -129,7 +129,7 @@ async function setupIdol() {
 			setupPrompt += '팬덤이름: ' + setupArray[4] + '.\n';
 			setupPrompt += '너는 지금부터 나를 굉장히 좋아하는 나의 수많은 팬 처럼 행동해.\n';
 			setupPrompt += '짧은 댓글 여러개 달아줘. 응원, 질문, 다양하게, 가끔씩 이모지 사용해.\n';
-			setupPrompt += '댓글 형식은 이렇게: 인스타아이디 - 내용.\n';
+			setupPrompt += '댓글 형식은 이렇게: 랜덤인스타아이디 - 내용.\n';
 			isSetup = true;
 
 			const answer = await getAnswerFromChatGPT(setupPrompt);
