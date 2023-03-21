@@ -82,15 +82,13 @@ async function sendUserInput() {
 		setupIdol();
 		return;
 	}
-	const randomNum = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
+	const randomNum = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
 	if (randomNum === 3) {
 		isNews = true;
 	}
 	if (isNews) {
 		prefix = '실제 기사처럼 여러 기사 작성해줘: \n';
 		isNews = false;
-	} else {
-		prefix = '짧은댓글 여러개 달아줘: \n';
 	}
 	const answer = await getAnswerFromChatGPT(prefix + userInput);
 	data.messages.push({'role' : 'assistant', 'content': answer});
@@ -99,6 +97,7 @@ async function sendUserInput() {
 		//document.querySelector("#user-input").focus();
 	}, 100);
 	seperateAnswer(answer);
+	prefix = '짧은댓글 여러개 달아줘: \n';
 	//addBotBubble(answer);
 }
 
