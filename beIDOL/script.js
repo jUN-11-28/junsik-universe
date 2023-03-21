@@ -1,5 +1,5 @@
 let hasApiKey = false;
-let api_key = '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';
+let api_key = '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';
 let isUser = false;
 let isSetup = false;
 let setupIndex = 0;
@@ -10,7 +10,7 @@ const cookieName = 'chatBot_key';
 // 리로드 되면 바로 텍스트박스로
 window.onload = function() {
   // 쿠키에서 API 키 가져오기
-	api_key = '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';
+	api_key = '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';
 	document.cookie = `${cookieName}=${api_key};path=/`;
   const cookies = document.cookie.split(';');
   for (let i = 0; i < cookies.length; i++) {
@@ -20,7 +20,7 @@ window.onload = function() {
       break;
     }
   }
-	api_key = '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';
+	api_key = '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';
 	// API 키가 없으면 사용자에게 다시 입력 받도록 알림
 	if (api_key === '') {
 		addBotBubble("api 키를 입력하세요");
@@ -87,7 +87,7 @@ async function sendUserInput() {
 	data.messages.push({'role' : 'assistant', 'content': answer});
 	setTimeout(function() {
 		document.querySelector("#user-input").value = '';
-		document.querySelector("#user-input").focus();
+		//document.querySelector("#user-input").focus();
 	}, 100);
 	seperateAnswer(answer);
 	//addBotBubble(answer);
@@ -112,7 +112,7 @@ async function setupIdol() {
 			break;
 		default:
 			addBotBubble("곧 시작될 예정입니다. 잠시만 기다려주세요");
-			setupPrompt += '내 정보를 입력할게.\n케이팝 인기 아이돌이야.';
+			setupPrompt += '내 정보를 알려줄게.\n';
 			setupPrompt += '이름: ' + setupArray[0] + '.\n';
 			setupPrompt += '생년월일: ' + setupArray[1] + '.\n';
 			setupPrompt += '데뷔일: ' + setupArray[3] + '.\n';
@@ -120,14 +120,14 @@ async function setupIdol() {
 			setupPrompt += '팬덤이름: ' + setupArray[4] + '.\n';
 			setupPrompt += '너는 이제 나를 굉장히 좋아하는 나의 수많은 팬 처럼 행동하면 돼.\n';
 			setupPrompt += '짧게 댓글 처럼 여러개 달아줘. 응원, 질문, 다양하게, 가끔씩 이모지 사용해.\n';
-			setupPrompt += '댓글 형식은 이렇게: 인스타아이디 - 내용.\n';
+			setupPrompt += '댓글 형식은 이렇게: 다양한 인스타 아이디 - 내용.\n';
 			isSetup = true;
 
 			const answer = await getAnswerFromChatGPT(setupPrompt);
 			data.messages.push({'role' : 'assistant', 'content': answer});
 			setTimeout(function() {
 				document.querySelector("#user-input").value = '';
-				document.querySelector("#user-input").focus();
+				//document.querySelector("#user-input").focus();
 			}, 100);
 			seperateAnswer(answer);
 	}
