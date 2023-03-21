@@ -41,6 +41,7 @@ function addUserBubble(userInput) {
 
 	// 입력창을 초기화합니다.
 	document.querySelector("#user-input").value = null;
+	document.querySelector("#user-input").value = '';
 
 	// 입력창의 높이를 자동으로 조절합니다.
 	adjustUserInputHeight();
@@ -73,9 +74,18 @@ const background = document.querySelector("#background");
 function adjustBackgroundHeight() {
   const userInputContainerHeight = userInputContainer.offsetHeight;
   const windowHeight = window.innerHeight;
-  background.style.height = `${windowHeight - userInputContainerHeight - 15}px`;
+
+	// 채팅창의 높이를 계산합니다.
+  const backgroundHeight = windowHeight - userInputContainerHeight - 15;
+
+	//// 백그라운드 높이를 적용합니다.
+  // background.style.height = `${windowHeight - userInputContainerHeight - 15}px`;
+	background.style.height = `${backgroundHeight}px`;
+	chatHistory.scrollTop = chatHistory.scrollHeight;
 	
 }
+
+
 
 // 초기화 함수입니다.
 function init() {
@@ -90,7 +100,7 @@ function init() {
       handleKeyPress(event);
     } else if (event.key === "Enter" && event.shiftKey) { // Shift + Enter일 때
       event.preventDefault(); // 전송 막기
-      userInput.value += "\n"; // 대신 개행 추가
+      userInput.value += "\n"; // 대신 개행 추가	
     }
   });
 
