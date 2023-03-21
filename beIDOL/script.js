@@ -104,6 +104,13 @@ function init() {
     }
   });
 
+  userInput.addEventListener("input", () => {
+    // 입력값이 없으면 입력창의 값을 빈 문자열로 설정합니다.
+    if (userInput.value.trim() === '') {
+      userInput.value = '';
+    }
+  });
+
 	// 백그라운드 크기 조절
 	adjustBackgroundHeight();
   window.addEventListener("resize", adjustBackgroundHeight);
