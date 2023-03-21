@@ -1,5 +1,5 @@
 let hasApiKey = false;
-let api_key = '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';
+let api_key = '';
 let isUser = false;
 let isSetup = false;
 let setupIndex = 0;
@@ -10,7 +10,6 @@ const cookieName = 'chatBot_key';
 // 리로드 되면 바로 텍스트박스로
 window.onload = function() {
   // 쿠키에서 API 키 가져오기
-	document.cookie = `${cookieName}=${api_key};path=/`;
   const cookies = document.cookie.split(';');
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i].trim();
@@ -77,8 +76,7 @@ async function sendUserInput() {
 
 	addUserBubble(userInput);
 	if (!isSetup) {
-		setupIdol(setupIndex);
-		setupIndex = setupIndex + 1;
+		setupIdol(userInput);
 		return;
 	}
 	const answer = await getAnswerFromChatGPT(userInput);
@@ -90,10 +88,14 @@ async function sendUserInput() {
 	addBotBubble(answer);
 }
 
-function setupIdol(i) {
-	if (i === 0) {
-		addBotBubble("활동명을 알려주세요");
+function setupIdol() {
+	switch(setupIndex) {
+		case 0:
+			addBotBubble("활동명을 알려주세요");
+			break;
+		
 	}
+	setupIndex++;
 }
 
 function addUserBubble(userInput) {
