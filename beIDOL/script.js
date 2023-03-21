@@ -40,7 +40,7 @@ function addUserBubble(userInput) {
 	chatHistory.appendChild(messageContainer);
 
 	// 입력창을 초기화합니다.
-	document.querySelector("#user-input").value = "";
+	document.querySelector("#user-input").value = null;
 
 	// 입력창의 높이를 자동으로 조절합니다.
 	adjustUserInputHeight();
