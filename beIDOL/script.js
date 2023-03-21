@@ -82,13 +82,13 @@ async function sendUserInput() {
 		setupIdol();
 		return;
 	}
-	const randomNum = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
-	if (randomNum ===1) {
+	const randomNum = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
+	if (randomNum === 1) {
 		isNews = true;
 	}
 	if (isNews) {
 		prefix = '실제 기사처럼 여러 기사 작성해줘. 기사형식 [기사회사] --- 내용:\n';
-		setTimeout(addBotBubble('기사봇 - 특종이 뜬거 같아요! 곧 기사가 뜹니다!'), 1000);
+		setTimeout(addBotBubble('기사봇 --- 특종이 뜬거 같아요! 곧 기사가 뜹니다!'), 1000);
 	}
 	const answer = await getAnswerFromChatGPT(prefix + userInput);
 	data.messages.push({'role' : 'assistant', 'content': answer});
