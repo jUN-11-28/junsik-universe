@@ -6,18 +6,18 @@ function sendUserInput() {
   // 사용자가 입력한 메시지를 가져옵니다.
   const userInput = document.querySelector("#user-input").value;
 
-	if (userInput === '') {
-		return;
-	}
+  if (userInput === '') {
+    return;
+  }
 
   // 현재 시간을 구합니다.
   const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
   // 메시지를 추가할 요소를 생성합니다.
+	const messageText = document.createElement("pre");
   const messageTime = document.createElement("p");
   const messageContainer = document.createElement("div");
   const messageBubble = document.createElement("div");
-  const messageText = document.createElement("pre");
 
   // 요소에 클래스를 추가합니다.
   messageTime.classList.add("message-time");
@@ -30,9 +30,9 @@ function sendUserInput() {
   messageTime.textContent = currentTime;
 
   // 요소를 채팅창에 추가합니다.
-  messageContainer.appendChild(messageTime);
-  messageBubble.appendChild(messageText);
+	messageContainer.appendChild(messageTime);
   messageContainer.appendChild(messageBubble);
+  messageBubble.appendChild(messageText);
   chatHistory.appendChild(messageContainer);
 
   // 입력창을 초기화합니다.
@@ -57,7 +57,7 @@ function adjustUserInputHeight() {
 
 // 입력창에서 엔터 키를 누를 때 호출되는 함수입니다.
 function handleKeyPress(event) {
-  if (event.keyCode === 13) {
+  if (event.keyCode === 13 && !event.shiftKey && document.querySelector("#user-input").value.trim() !== "") {
     event.preventDefault();
     sendUserInput();
   }
@@ -72,11 +72,11 @@ function init() {
   const userInput = document.querySelector("#user-input");
   userInput.addEventListener("input", adjustUserInputHeight);
   userInput.addEventListener("keydown", (event) => {
-		if (event.key === "Enter" && !event.shiftKey) { // Enter 키 눌렀을 때
-    	handleKeyPress(event);
+    if (event.key === "Enter") {
+      handleKeyPress(event);
     } else if (event.key === "Enter" && event.shiftKey) { // Shift + Enter일 때
-    	event.preventDefault(); // 전송 막기
-    	userInput.value += "\n"; // 대신 개행 추가
+      event.preventDefault(); // 전송 막기
+      userInput.value += "\n"; // 대신 개행 추가
     }
   });
 }
