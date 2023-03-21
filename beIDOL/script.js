@@ -81,16 +81,5 @@ function init() {
   });
 }
 
-let initialHeight = window.innerHeight;
-
-window.addEventListener("resize", () => {
-  if (window.innerHeight < initialHeight) { // 키보드가 올라온 경우
-    document.querySelector("#user-input-container").style.bottom = `${window.innerHeight - initialHeight}px`;
-  } else { // 키보드가 내려간 경우
-    document.querySelector("#user-input-container").style.bottom = "0";
-  }
-});
-
-
 // 초기화 함수를 호출합니다.
 init();
