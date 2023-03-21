@@ -10,7 +10,7 @@ function sendUserInput() {
     return;
   }
 	addUserBubble(userInput);
-  document.querySelector("#input-text").focus();
+  document.querySelector("#user-input").focus();
 }
 
 function addUserBubble(userInput) {
