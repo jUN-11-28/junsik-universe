@@ -1,5 +1,5 @@
 let hasApiKey = false;
-let api_key = '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';
+let api_key = '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';
 let isUser = false;
 let isSetup = false;
 let setupIndex = 0;
