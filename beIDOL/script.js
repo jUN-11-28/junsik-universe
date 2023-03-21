@@ -1,5 +1,5 @@
 let hasApiKey = false;
-let api_key = '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';
+let api_key = '';
 let isUser = false;
 let isSetup = false;
 let setupIndex = 0;
@@ -10,8 +10,6 @@ const cookieName = 'chatBot_key';
 // 리로드 되면 바로 텍스트박스로
 window.onload = function() {
   // 쿠키에서 API 키 가져오기
-	api_key = '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';
-	document.cookie = `${cookieName}=${api_key};path=/`;
   const cookies = document.cookie.split(';');
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i].trim();
@@ -19,8 +17,7 @@ window.onload = function() {
       api_key = cookie.substring(`${cookieName}=`.length, cookie.length);
       break;
     }
-  }
-	api_key = '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';
+  };
 	// API 키가 없으면 사용자에게 다시 입력 받도록 알림
 	if (api_key === '') {
 		addBotBubble("api 키를 입력하세요");
