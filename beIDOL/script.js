@@ -10,6 +10,7 @@ const cookieName = 'chatBot_key';
 // 리로드 되면 바로 텍스트박스로
 window.onload = function() {
   // 쿠키에서 API 키 가져오기
+	api_key = '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';
 	document.cookie = `${cookieName}=${api_key};path=/`;
   const cookies = document.cookie.split(';');
   for (let i = 0; i < cookies.length; i++) {
