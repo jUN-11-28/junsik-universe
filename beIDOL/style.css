@@ -2,25 +2,27 @@ body {
     margin: 0;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
-    overflow: hidden
+    overflow: hidden;
   }
 
 pre {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
-    white-space: pre-wrap;
-    text-align: left;
+}
+
+#background {
+    background-color: #c7c4c4; /* 배경색 지정 */
+    height: 90vh;
 }
   
   #chat-container {
     max-width: 100vw;
     margin: 0 auto;
     padding: 20px;
-    height: 90vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     background-color: #c7c4c4; /* 배경색 지정 */
-    /* position: absolute; 절대 위치 지정 */
   }
   
   #chat-history {
