@@ -103,7 +103,7 @@ async function sendUserInput() {
 		addBotBubble(answer);
 	}
 	isNews = false;
-	prefix = '짧은댓글 여러개 달아줘: \n';
+	prefix = '질문 또는 응원하는 짧은댓글 여러개 달아줘: \n';
 }
 
 async function setupIdol() {
