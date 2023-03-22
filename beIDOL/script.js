@@ -98,9 +98,9 @@ async function sendUserInput() {
 		//document.querySelector("#user-input").focus();
 	}, 100);
 	if (prefix === '실제 기사처럼 여러 기사 작성해줘. 기사형식 [기사회사] --- 내용:\n') {
-		seperateAnswer(answer);
-	} else {
 		addBotBubble(answer);
+	} else {
+		seperateAnswer(answer);
 	}
 	isNews = false;
 	prefix = '질문 또는 응원하는 짧은댓글 여러개 달아줘: \n';
