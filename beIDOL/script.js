@@ -89,6 +89,7 @@ async function sendUserInput() {
 	if (isNews) {
 		prefix = '실제 기사처럼 여러 기사 작성해줘. 기사형식 [기사회사] --- 내용:\n';
 		setTimeout(addBotBubble('기사봇 --- 특종이 뜬거 같아요! 곧 기사가 뜹니다!'), 1000);
+		isNews = false;
 	}
 	const answer = await getAnswerFromChatGPT(prefix + userInput);
 	data.messages.push({'role' : 'assistant', 'content': answer});
@@ -96,13 +97,12 @@ async function sendUserInput() {
 		document.querySelector("#user-input").value = '';
 		//document.querySelector("#user-input").focus();
 	}, 100);
-	if (!isNews) {
+	if (prefix === '실제 기사처럼 여러 기사 작성해줘. 기사형식 [기사회사] --- 내용:\n') {
 		seperateAnswer(answer);
-		isNews = false;
 	} else {
 		addBotBubble(answer);
 	}
-	
+	isNews = false;
 	prefix = '짧은댓글 여러개 달아줘: \n';
 }
 
