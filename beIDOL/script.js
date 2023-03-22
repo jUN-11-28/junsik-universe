@@ -83,7 +83,7 @@ async function sendUserInput() {
 		setupIdol();
 		return;
 	}
-	const randomNum = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
+	const randomNum = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
 	if (randomNum === 1) {
 		isNews = true;
 	}
