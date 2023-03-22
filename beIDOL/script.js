@@ -87,8 +87,8 @@ async function sendUserInput() {
 		isNews = true;
 	}
 	if (isNews) {
-		prefix = '실제 기사처럼 여러 기사 작성해줘. 기사형식 [기사회사] --- 내용:\n';
-		setTimeout(addBotBubble('기사봇 --- 특종이 뜬거 같아요! 곧 기사가 뜹니다!'), 1000);
+		prefix = '실제 기사처럼 여러 기사 작성해줘. 기사형식 [기사회사] - 내용:\n';
+		setTimeout(addBotBubble('기사봇 - 특종이 뜬거 같아요! 곧 기사가 뜹니다!'), 1000);
 		isNews = false;
 	}
 	const answer = await getAnswerFromChatGPT(prefix + userInput);
@@ -97,8 +97,8 @@ async function sendUserInput() {
 		document.querySelector("#user-input").value = '';
 		//document.querySelector("#user-input").focus();
 	}, 100);
-	if (prefix === '실제 기사처럼 여러 기사 작성해줘. 기사형식 [기사회사] --- 내용:\n') {
-		addBotBubble(answer);
+	if (prefix === '실제 기사처럼 여러 기사 작성해줘. 기사형식 [기사회사] - 내용:\n') {
+		addBotBubble('기사봇 - '+ answer);
 	} else {
 		seperateAnswer(answer);
 	}
@@ -133,7 +133,7 @@ async function setupIdol() {
 			setupPrompt += '팬덤이름: ' + setupArray[4] + '.\n';
 			setupPrompt += '너는 지금부터 나를 굉장히 좋아하는 나의 수많은 팬 처럼 행동해.\n';
 			setupPrompt += '짧은 댓글 여러개 달아줘. 응원, 질문, 다양하게, 가끔씩 이모지 사용해.\n';
-			setupPrompt += '댓글 형식은 이렇게: 랜덤이름들 --- 내용.\n';
+			setupPrompt += '댓글 형식은 이렇게: 랜덤이름들 - 내용.\n';
 			isSetup = true;
 
 			const answer = await getAnswerFromChatGPT(setupPrompt);
@@ -223,9 +223,9 @@ function addBotBubble(userInput) {
 	textContainer.classList.add("bot-text");
 
 	// 요소에 사용자가 입력한 메시지와 현재 시간을 추가합니다.
-	if (userInput.includes('---')) {
-		botProfileName.textContent = userInput.split('---')[0];
-		messageText.textContent = userInput.split('---')[1];
+	if (userInput.includes('-')) {
+		botProfileName.textContent = userInput.split('-')[0];
+		messageText.textContent = userInput.split('-')[1];
 	} else {
 		// handle case where userInput does not contain '-'
 		botProfileName.textContent = 'beIDOL';
