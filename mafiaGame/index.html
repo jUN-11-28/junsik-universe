@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>마피아 게임</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+        #timer {
+            font-size: 30px;
+            color: white;
+        }
+        #game-container {
+            display: none;
+        }
+        #end-container {
+            display: none;
+            background-color: black;
+            color: white;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>마피아 게임</h1>
+    <div id="start-container">
+        <input id="player-count" type="number" min="1" placeholder="인원 수를 입력하세요">
+        <button id="start-button">시작</button>
+    </div>
+    <div id="game-container">
+        <h2 id="role"></h2>
+        <button id="next-button">다음</button>
+    </div>
+    <div id="end-container">
+        <h1 id="timer">10:00</h1>
+        <input id="player-number" type="number" min="1" placeholder="번호를 입력하세요">
+        <button id="kill-button">죽이기</button>
+    </div>
+</body>
+</html>
